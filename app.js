@@ -1,46 +1,48 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+'use strict'
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+const express = require('express');
+const bodyParser = require('body-parser');
+const request = require('request');
 
-var app = express();
+const app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('port', (process.env.PORT || 8000));
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// Parser application/x-www-form-urlencoded
+app.user(bodyParser.urlencoded({extended:false}));
+app.user(bodyParser.json());
 
-app.use('/', index);
-app.use('/users', users);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+// Index
+app.get('/', (req, res) => {
+  res.send('ShopRite Bot Deployed!!');
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+// For FaceBook verification
+app.get('/webhook', (req, res) => {
+  // Make sure this is a page subscription
+  if (req.body.object == 'page') {
+    // Iterate over each entry
+    // There may be multiple entries if batched
+    req.body.entry.forEach((entry) => {
+      // Iterate over each messaging event 
+      entry.messaging.forEach((event) => {
+        if (event.postback){
+          bot.processPostback(event);
+        }else if (event.message) {
+          let message = event.message;
+          if (message.quick_reply){
+            bot.processQuickReply(event);
+          }else {
+            bot.processMessage(event);
+          }
+        }
+      });
+    });
+    res.sendStatus(200);
+  }
 });
 
-module.exports = app;
+ // Fire up the server to listen
+ app.listen(app.get('port'), () => {
+  console.log('Running on port', app.get('port'));
+});
