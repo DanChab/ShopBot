@@ -1,0 +1,11 @@
+{
+  "name": "shoprite",
+  "version": "1.0.0",
+  "description": "The ShopRite bot",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel Chabala",
+  "license": "ISC"
+}
