@@ -212,7 +212,7 @@ var processQuickReply = (event) => {
 
       switch(strPayload){
         case "ADD_ITEM_TO_LIST":
-            order.sendMessage(senderId, {text:"You can chose you can add items to you shopping list"});
+            order.sendMessage(senderId, {text:"You can add items to you shopping list"});
             order.checkMenu(senderId);
         break;
 
@@ -269,3 +269,33 @@ var processQuickReply = (event) => {
       }
    }
 };
+
+var getUserName = (senderId) => {
+  // Getting the user name form the facebook API
+  request({
+    url: "https://graph.facebook.com/v2.6/" + senderId,
+    qs: {
+      access_token: process.env.PAGE_ACCESS_TOKEN,
+      fields: "first_name"
+    },
+    method: "GET"
+  }, (error, response, body) => {
+    if (error) {
+      console.log("Error getting user's name: " + error);
+    }else {
+      let bodyObj = JSON.parse(body);
+      var name = bodyObj.first_name;
+      console.log(name)
+       userName = name;
+       console.log("$$$$$$",userName)
+       return userName;
+    }
+  });
+}
+
+module.exports = {
+  pocessPostback,
+  processMessage,
+  processQuickReply,
+  getUserName
+}
