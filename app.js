@@ -3,6 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
+const bot = require('./bot.js');
 
 const app = express();
 
