@@ -10,7 +10,7 @@ var processPostback = (event) => {
     // Get user's first name from the User Profile API
     // and include it in the Greeting message
     request({
-      url : "https://graph.facebook.com/v2.6/" + senderId,
+      url : 'https://graph.facebook.com/v2.6/' + senderId,
       qs : {
         access_token : process.env.PAGE_ACCESS_TOKEN,
         fields:'first_name'
@@ -25,7 +25,7 @@ var processPostback = (event) => {
           var name = bodyObj.first_name;
           greeting = `Hi ${name} ,`;
         }
-        let message = `${greeting} am the ShopRite robot, I can show you products prices and notify you for promotions and discounts. Type "product" to check products or "help" to get help menue`;
+        let message = `${greeting} am the ShopRite robot, I can show you products prices and notify you for promotions and discounts. Type 'product' to check products or 'help' to get help menue`;
         itemManager.sendMessage(senderId,{text:message});
     });
   }
@@ -36,24 +36,24 @@ var processPostback = (event) => {
 
     console.log(`str_payload :${strPayload} // iD :${itemId}`);
     switch(strPayload){
-      case "ADD_ITEM_TO_LIST":
-      order.sendMessage(senderId, {text:"You can add product to your shopping list."});
+      case 'ADD_ITEM_TO_LIST':
+      order.sendMessage(senderId, {text:'You can add product to your shopping list.'});
       order.checkProducts(senderId);
   break;
 
-  case "DELETE_LIST":
+  case 'DELETE_LIST':
         let messageData = {
-        "text":"Confirm if you want to DELETE.",
-        "quick_replies":[
+        'text':'Confirm if you want to DELETE.',
+        'quick_replies':[
           {
-            "content_type":"text",
-            "title":"Cancel",
-            "payload":"NO_DELETE_LIST"
+            'content_type':'text',
+            'title':'Cancel',
+            'payload':'NO_DELETE_LIST'
           },
           {
-            "content_type":"text",
-            "title":"Delete",
-            "payload":"YES_DELETE_LIST"
+            'content_type':'text',
+            'title':'Delete',
+            'payload':'YES_DELETE_LIST'
           }
         ]
     }
@@ -61,34 +61,34 @@ var processPostback = (event) => {
         order.sendMessage(senderId, messageData);
   break;
 
-  case "YES_DELETE_LIST":
+  case 'YES_DELETE_LIST':
     order.deleteList(senderId);
       break;
-  case "NO_DELETE_LIST":
-    order.sendMessage(senderId, {text:"You can add more items... "})
+  case 'NO_DELETE_LIST':
+    order.sendMessage(senderId, {text:'You can add more items... '})
     order.checkProducts(senderId);
       break;
-  case "CREATE_SHOPPING_LIST":
+  case 'CREATE_SHOPPING_LIST':
     order.checkProducts(senderId);
       break;
   /*
-  case "PASS_ORDER_LIST":
-      order.sendMessage(senderId, {text:"Please confirm your order?"})
+  case 'PASS_ORDER_LIST':
+      order.sendMessage(senderId, {text:'Please confirm your order?'})
       order.confirmListOrder(senderId);
       break;
       
-  case "YES_ORDER_LIST":
+  case 'YES_ORDER_LIST':
       order.passListOrder(senderId);
       order.shareLocation(senderId);
       break;
-  case "NO_ORDER_LIST":
+  case 'NO_ORDER_LIST':
     order.checkProducts(senderId);
       break;
-  case "ONE_PIZZA":
+  case 'ONE_PIZZA':
     order.confirmOrder(senderId, itemId);
       break;
-  case "MORE_PIZZA":
-    order.sendMessage(senderId, {text:'I will added your PIZZA to the list, just type "list" and order all of them 😊' });
+  case 'MORE_PIZZA':
+    order.sendMessage(senderId, {text:'I will added your PIZZA to the list, just type 'list' and order all of them 😊' });
     order.addToList(senderId,itemId)
     */
   }
@@ -100,8 +100,8 @@ var processMessage = (event) => {
     let message = event.message;
     let senderId = event.sender.id;
 
-    console.log("Received message from senderId: " + senderId);
-    console.log("The message is: " + JSON.stringify(message));
+    console.log('Received message from senderId: ' + senderId);
+    console.log('The message is: ' + JSON.stringify(message));
 
     // You may get an attachement or a text but not both
     if (message.text) {
@@ -109,95 +109,163 @@ var processMessage = (event) => {
       getUserName(senderId);
       switch (formattedMsg) {
         // Greating key words
-        case "hi":
-        case "hey":
-      order.sendMessage (senderId, {text:`Hi ${userName}, am the shoprite robot i can show all products prices, just type products or help if you need my help.` });
+        case 'hi':
+        case 'hey':
+          order.sendMessage (senderId, {text:`Hi ${userName}, am the shoprite robot i can show all products prices, just type products or help if you need my help.` });
         break;
-        case "hello":
-        case "helo":
-         order.sendMessage (senderId, {text:`Hello ${userName}, am the shoprite robot i can show all products prices, just type products or help if you need my help.`});
+        case 'hello':
+        case 'helo':
+          order.sendMessage (senderId, {text:`Hello ${userName}, am the shoprite robot i can show all products prices, just type products or help if you need my help.`});
         break;
-        case "how are you?":
-        case "how are you":
-          order.sendMessage (senderId, {text:"Am fine, thanks for asking"});
+        case 'how are you?':
+        case 'how are you':
+          order.sendMessage (senderId, {text:'Am fine, thanks for asking'});
         break;
         case "what's up?":
-        case "whats up":
-          order.sendMessage (senderId, {text:"Am here waitting to help you"});
+        case 'whats up':
+          order.sendMessage (senderId, {text:'Am here waitting to help you'});
         break;
-        case "good morning":
-        case "good afternoon":
-        case "good evening":
-        case "good night":
-          order.sendMessage (senderId, {text:"Hi there!"});
+        case 'good morning':
+        case 'good afternoon':
+        case 'good evening':
+        case 'good night':
+          order.sendMessage (senderId, {text:'Hi there!'});
         break;
         // Questions abt me key words
-        case "who are you?":
-        case "who are u?":
-        case "who r u?":
-        case "who are you":
-        case "who are u":
-        case "who r u":
-          order.sendMessage (senderId, {text:'Am a robot and i can show all products and prices just type "products" to see all products and prices or "help" if you need my help. '});
+        case 'who are you?':
+        case 'who are u?':
+        case 'who r u?':
+        case 'who are you':
+        case 'who are u':
+        case 'who r u':
+          order.sendMessage (senderId, {text:"Am a robot and i can show all products and prices just type 'products' to see all products and prices or 'help' if you need my help. "});
         break;
         // Thank you message
-        case "thank you":
-        case "thanks":
+        case 'thank you':
+        case 'thanks':
         order.sendMessage (senderId, {text:'You are welcome, am always here to help you '});
         break;
         // Emotion key words
-        case "i love you":
-        case "i like you":
-        case "love you":
-        case "like you":
+        case 'i love you':
+        case 'i like you':
+        case 'love you':
+        case 'like you':
         order.sendMessage (senderId, {text:'I have the same feeling for you...'});
         break;
        // Questions abt location key words
-        case "where are you":
+        case 'where are you':
         order.sendMessage (senderId, {text:'Am right here to help you...'});
        break;
 
-        case "product":
-      
-          order.checkProducts(senderId);
-        break;
-        case "products":
-        
-            order.checkProducts(senderId);
+        case 'product':
+        case 'products':
+         order.checkProducts(senderId);
           break;
         //List message
-        case "list":
+        case 'list':
           order.checkItemList(senderId);
         break
         //Help message
-       case "help":
-          order.sendMessage (senderId, {text:"You can type \n\n•products: to see products \n•list : to see your shopping list\n•help : to see this help\n•promotion : to see all products on promotion\n•discount : to see all products on discount."});
+      case 'helps':
+       case 'help':
+          order.sendMessage (senderId, {text:'You can type \n\n•products: to see products \n•list : to see your shopping list\n•help : to see this help\n•promotion : to see all products on promotion\n•discount : to see all products on discount.'});
         break;
         default:
-          order.sendMessage (senderId, {text:'Hummm...am confused, am still learning you know!! If you need help just type "help". '});
+          order.sendMessage (senderId, {text:"Hummm...am confused, am still learning you know!! If you need help just type 'help'."});
           break;
       }
     } else if (message.attachments){
         order.senderId(senderId, {text:'sorry i can not read that...'})
       /*
-      // Get the "type" and the location name
+      // Get the 'type' and the location name
       var location = message.attachments;
       location.forEach(function(attachementObj){
         var title = attachementObj.title;
         var type = attachementObj.type;
         var payload = attachementObj.payload;
 
-        if (type === "location") {
+        if (type === 'location') {
             order.sendCoordonates(senderId, payload, title);
             
         }
         else {
           
-           order.sendMessage(senderId, {text: "Hmmm...I can not find your location"});
+           order.sendMessage(senderId, {text: 'Hmmm...I can not find your location'});
         }
       });
       */
     }
     
   }
-}
+};
+
+var processQuickReply = (event) => {
+  let message = event.message;
+
+  if (message.quick_reply) {
+        let payload = message.quick_reply.payload;
+        let senderId = event.sender.id;
+
+        var str = payload.split('-');
+        var strPayload = str[0];
+        var itemId = str[1];
+
+      switch(strPayload){
+        case "ADD_ITEM_TO_LIST":
+            order.sendMessage(senderId, {text:"You can chose you can add items to you shopping list"});
+            order.checkMenu(senderId);
+        break;
+
+        case "DELETE_LIST":
+              let messageData = {
+              "text":"Confirm if you want to DELETE.",
+              "quick_replies":[
+                {
+                  "content_type":"text",
+                  "title":"Cancel",
+                  "payload":"NO_DELETE_LIST"
+                },
+                {
+                  "content_type":"text",
+                  "title":"Delete",
+                  "payload":"YES_DELETE_LIST"
+                }
+              ]
+          }
+
+              order.sendMessage(senderId, messageData);
+        break;
+
+        case "YES_DELETE_LIST":
+          order.deleteList(senderId);
+            break;
+        case "NO_DELETE_LIST":
+          order.sendMessage(senderId, {text:"You can add more items... "})
+          order.checkMenu(senderId);
+            break;
+        case "CREATE_PIZZA_LIST":
+          order.checkMenu(senderId);
+            break;
+      /*
+        case "PASS_ORDER_LIST":
+            order.sendMessage(senderId, {text:"Please confirm your order?"})
+            order.confirmListOrder(senderId);
+            break;
+     
+        case "YES_ORDER_LIST":
+            order.passListOrder(senderId);
+            order.shareLocation(senderId);
+            break;
+        case "NO_ORDER_LIST":
+          order.checkMenu(senderId);
+            break;
+        case "ONE_PIZZA":
+          order.confirmOrder(senderId, itemId);
+            break;
+        case "MORE_PIZZA":
+          order.sendMessage(senderId, {text:'I will added your PIZZA to the list, just type "list" and order all of them 😊' });
+          order.addToList(senderId,itemId)
+      */
+      }
+   }
+};
