@@ -34,7 +34,7 @@ var checkProducts = (senderId) => {
               "title":nameCtg,
               "payload":"CATEGORY-"+nameCtg
          });
-  
+         console.log(elements);
         });
   
         let messageData = {
