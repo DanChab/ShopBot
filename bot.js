@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const request = require('request');
 var _ = require('lodash');
+const item = require('./item.js');
 
 var processPostback = (event) => {
   let senderId = event.sender.id;
