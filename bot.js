@@ -203,13 +203,14 @@ var processMessage = (event) => {
 var processQuickReply = (event) => {
   let message = event.message;
 
-  if (message.quick_reply) {
-        let payload = message.quick_reply.payload;
+  if (message.quick_replies) {
+        let payload = message.quick_replies.payload;
         let senderId = event.sender.id;
-
         var str = payload.split('-');
         var strPayload = str[0];
         var itemId = str[1];
+
+        console.log(`str_payload :${strPayload} // iD :${itemId}`);
 
       switch(strPayload){
         case "ADD_ITEM_TO_LIST":
