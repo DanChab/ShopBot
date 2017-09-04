@@ -19,7 +19,18 @@ app.get('/', (req, res) => {
 });
 
 // For FaceBook verification
-app.get('/webhook', (req, res) => {
+app.get('/webhook', function(req, res){
+  if (req.query['hub.verify_token'] === process.env.VERIFICATION_TOKEN){
+    console.log('Verified webhook');
+    res.send(req.query['hub.challenge']);
+  } else {
+    console.error('Verification failed. The tokens do not mach.');
+    res.sendStatus(403);
+  }
+});
+
+// All callbacks for messenger will be POST-ed here
+app.post('/webhook', (req, res) => {
   // Make sure this is a page subscription
   if (req.body.object == 'page') {
     // Iterate over each entry
