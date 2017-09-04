@@ -23,7 +23,7 @@ var checkProducts = (senderId) => {
     request("https://rapid-resto.herokuapp.com/api/shoprite/prodCategory", (error, response, body) =>{
       if (!error && response.statusCode == 200) {
         let prodCtgArray = JSON.parse(body);
-        //console.log(productArray);
+        console.log(prodCtgArray);
         // Looping through
         prodCtgArray.forEach(function(category){
           let idCtg = category._id;
@@ -32,7 +32,7 @@ var checkProducts = (senderId) => {
           elements.push({  
               "content_type":"text",
               "title":nameCtg,
-              "payload":`YES_ORDER_LIST-${nameCtg}`
+              "payload":"CATEGORY-"+nameCtg
          });
   
         });
