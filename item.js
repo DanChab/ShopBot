@@ -53,7 +53,7 @@ var checkProducts = (senderId) => {
     var categoryName = categoryName.toLowerCase().trim();
     console.log(categoryName, ":Starting")
     request({
-      url:'https://rapid-resto.herokuapp.com/api/shoprite/getAllProdCategory',
+      url:'https://shoprite-bot-demo.herokuapp.com/api/shoprite/getAllProdCategory',
       body:{ categoryName:categoryName },
       method: 'POST',
       json:true
