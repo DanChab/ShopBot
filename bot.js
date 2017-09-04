@@ -294,7 +294,7 @@ var getUserName = (senderId) => {
 }
 
 module.exports = {
-  pocessPostback,
+  processPostback,
   processMessage,
   processQuickReply,
   getUserName
