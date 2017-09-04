@@ -49,5 +49,6 @@ var checkProducts = (senderId) => {
   }
 
   module.exports = {
-    checkProducts
+    checkProducts,
+    sendMessage
   }
