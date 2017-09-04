@@ -17,7 +17,7 @@ var sendMessage = (recipientId, message) => {
   });
 }
 
-var checkProduct = (senderId) => {
+var checkProducts = (senderId) => {
 
     var elements = [];
     request("https://rapid-resto.herokuapp.com/api/shoprite/prodCategory", (error, response, body) =>{
@@ -50,5 +50,5 @@ var checkProduct = (senderId) => {
   }
 
   module.exports = {
-    checkProduct
+    checkProducts
   }
