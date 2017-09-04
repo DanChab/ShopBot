@@ -51,6 +51,7 @@ var checkProducts = (senderId) => {
   var allProductCategory = (senderId, categoryName) => {
     var elements = [];
     var categoryName = categoryName.toLowerCase().trim();
+    console.log(categoryName, ":Starting")
     request({
       url:'https://rapid-resto.herokuapp.com/api/shoprite/getAllProdCategory',
       body:{ categoryName:categoryName },
