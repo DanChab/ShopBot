@@ -34,9 +34,8 @@ var checkProducts = (senderId) => {
               "title":nameCtg,
               "payload":"CATEGORY-"+nameCtg
          });
-         console.log(elements);
         });
-  
+        console.log(elements);
         let messageData = {
           "text":"We have a variety of products...here are the categories 🤗 ",
          "quick_replies":[
