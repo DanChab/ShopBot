@@ -38,9 +38,9 @@ var checkProducts = (senderId) => {
         console.log(elements);
         let messageData = {
           "text":"We have a variety of products...here are the categories 🤗 ",
-         "quick_replies":[
+         "quick_replies":
            elements
-         ]
+         
      }
      sendMessage(senderId, messageData);
       }
