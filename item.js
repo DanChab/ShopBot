@@ -52,7 +52,7 @@ var checkProducts = (senderId) => {
     var elements = [];
     var categoryName = categoryName.toLowerCase().trim();
     request({
-      url:'https://rapid-resto.herokuapp.com/api/shoprite/prodCategory',
+      url:'https://rapid-resto.herokuapp.com/api/shoprite/getAllProdCategory',
       body:{ categoryName:categoryName },
       method: 'POST',
       json:true
