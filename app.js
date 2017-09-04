@@ -11,7 +11,7 @@ app.set('port', (process.env.PORT || 8000));
 
 // Parser application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended:false}));
-app.user(bodyParser.json());
+app.use(bodyParser.json());
 
 // Index
 app.get('/', (req, res) => {
