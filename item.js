@@ -32,7 +32,7 @@ var checkProducts = (senderId) => {
           elements.push({  
               "content_type":"text",
               "title":nameCtg,
-              "payload":"CATEGORY-"+nameCtg
+              "payload":"PRODUCT_CATEGORY-"+nameCtg
          });
         });
         console.log(elements);
@@ -48,7 +48,63 @@ var checkProducts = (senderId) => {
   
   }
 
+  var allProductCategory = (senderId, categoryName) => {
+    var elements = [];
+    var categoryName = categoryName.toLowerCase().trim();
+    request({
+      url:'https://rapid-resto.herokuapp.com/api/shoprite/prodCategory',
+      body:{ categoryName:categoryName },
+      method: 'POST',
+      json:true
+    }, (err, body, response) => {
+      if (err) throw err;
+      if (!err && response.statusCode == 200){
+        var itemsArray = JSON.parse(body);
+
+        console.log(itemsArray);
+  
+        itemsArray.forEach((itemObj) => {
+          let itemName  = itemObj.name;
+          let itemPrice = itemObj.price;
+          let itemImg   = itemObj.image;
+          let itemId    = itemObj._id;
+  
+           // Adding item to the elements array
+           elements.push({
+            "title": itemName + " " +itemPrice,
+            "subtitle":  descriptionItem,
+            "image_url": itemImg,
+            "buttons": [{
+              "type": "postback",
+              "title": "Order",
+              "payload": "ORDER-"+itemId
+            },
+            {
+              "type": "postback",
+              "title": "Add To List",
+              "payload": "ADD_TO_LIST-"+idItem
+            }]
+          });
+        });
+  
+        let messageData = {
+          "attachment":{
+            "type": "template",
+            "payload": {
+              "template_type": "generic",
+              elements
+      }
+     }
+    }
+  sendMessage(senderId, messageData);
+  
+      }
+    });
+  }
+
   module.exports = {
-    checkProducts,
-    sendMessage
+    sendMessage,
+    allProductCategory,
+    checkProducts
+   
   }

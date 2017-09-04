@@ -208,14 +208,13 @@ var processQuickReply = (event) => {
         let senderId = event.sender.id;
         var str = payload.split('-');
         var strPayload = str[0];
-        var itemId = str[1];
+        var categoryName = str[1];
 
-        console.log(`str_payload :${strPayload} // iD :${itemId}`);
+        console.log(`str_payload :${strPayload} // Category :${categoryName}`);
 
       switch(strPayload){
-        case "ADD_ITEM_TO_LIST":
-            order.sendMessage(senderId, {text:"You can add items to you shopping list"});
-            order.checkMenu(senderId);
+        case "PRODUCT_CATEGORY":
+            item.allProductCategory(senderId,categoryName);
         break;
 
         case "DELETE_LIST":
