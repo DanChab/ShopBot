@@ -10,7 +10,7 @@ const app = express();
 app.set('port', (process.env.PORT || 8000));
 
 // Parser application/x-www-form-urlencoded
-app.user(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended:false}));
 app.user(bodyParser.json());
 
 // Index
