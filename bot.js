@@ -203,8 +203,8 @@ var processMessage = (event) => {
 var processQuickReply = (event) => {
   let message = event.message;
 
-  if (message.quick_replies) {
-        let payload = message.quick_replies.payload;
+  if (message.quick_reply) {
+        let payload = message.quick_reply.payload;
         let senderId = event.sender.id;
         var str = payload.split('-');
         var strPayload = str[0];
