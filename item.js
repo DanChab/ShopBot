@@ -69,12 +69,12 @@ var checkProducts = (senderId) => {
           let itemPrice = itemObj.price;
           let itemImg   = itemObj.image;
           let itemId    = itemObj._id;
-          let commun_name = itemObj.commun_name;
+          let common_name = itemObj.common_name;
   
            // Adding item to the elements array
            elements.push({
             "title": itemName + " " +itemPrice,
-            "subtitle":  commun_name,
+            "subtitle":  common_name,
             "image_url": itemImg,
             "buttons": [{
               "type": "postback",
