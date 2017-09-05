@@ -51,13 +51,13 @@ var checkProducts = (senderId) => {
   var allProductCategory = (senderId, categoryName) => {
     var elements = [];
     var categoryName = categoryName.toLowerCase().trim();
-    console.log(categoryName, ":Starting")
+    
     request({
-      url:'https://shoprite-bot-demo.herokuapp.com/api/shoprite/getAllProdCategory',
+      url:"https://rapid-resto.herokuapp.com/api/shoprite/prodCategory",
       body:{ categoryName:categoryName },
       method: 'POST',
       json:true
-    }, (err, body, response)=>{
+    }, (err, body, response) => {
       if (err) throw err;
       if (!err && response.statusCode == 200){
         var itemsArray = JSON.parse(body);
