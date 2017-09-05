@@ -62,7 +62,7 @@ var checkProducts = (senderId) => {
       if (!err && response.statusCode == 200){
         var itemsArray = JSON.parse(body);
 
-        console.log(itemsArray);
+        console.log('********',itemsArray);
   
         itemsArray.forEach((itemObj) => {
           let itemName  = itemObj.name;
