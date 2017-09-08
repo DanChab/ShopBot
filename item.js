@@ -58,6 +58,7 @@ var checkProducts = (senderId) => {
       method  : 'POST',
       json  : true
     }, (err, body, response) => {
+      console.log('Requesting......');
       if (!err && response.statusCode == 200){
         var itemsArray = JSON.parse(body);
 
