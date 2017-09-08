@@ -54,13 +54,14 @@ var checkProducts = (senderId) => {
     
     request({
       url : 'https://rapid-resto.herokuapp.com/api/shoprite/getAllProdCategory',
-      body :  { categoryName:categoryName },
       method  : 'POST',
+      body :  { categoryName:categoryName },
       json  : true
     }, (err, response, body) => {
       
       if (!err && response.statusCode == 200){
         var itemsArray = JSON.parse(body);
+        console(body);
         console.log('********',itemsArray);
   
         itemsArray.forEach((itemObj) => {
