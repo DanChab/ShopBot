@@ -100,9 +100,7 @@ var checkProducts = (senderId) => {
     }
   sendMessage(senderId, messageData);
   
-      }else{
-        console.log('Could not get JSON response');
-      }
+      }else if(err) throw err;
       
     });
   }
