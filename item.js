@@ -59,7 +59,7 @@ var checkProducts = (senderId) => {
       json  : true
     }, function (error,response, body) {
       
-      if (!err && response.statusCode == 200){
+      if (!error && response.statusCode == 200){
         var itemsArray = JSON.parse(body);
         console(body);
         console.log('********',itemsArray);
