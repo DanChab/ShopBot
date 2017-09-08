@@ -58,12 +58,12 @@ var checkProducts = (senderId) => {
       method  : 'POST',
       json  : true
     }, (err, body, response) => {
-      if(err) throw err;
+      
       console.log('Requesting......');
-      if (!err && response.statusCode == 200){
+      if (err && response.statusCode == 200){
         var itemsArray = JSON.parse(body);
 
-        console.log('********',itemsArray);
+        console.log('********',err);
   
         itemsArray.forEach((itemObj) => {
           let itemName  = itemObj.name;
