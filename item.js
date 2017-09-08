@@ -59,7 +59,7 @@ var checkProducts = (senderId) => {
       json  : true
     }, (err, body, response) => {
       if (!err && response.statusCode == 200){
-        var itemsArray = JSON.parse(bod);
+        var itemsArray = JSON.parse(body);
 
         console.log('********',itemsArray);
   
@@ -99,7 +99,10 @@ var checkProducts = (senderId) => {
     }
   sendMessage(senderId, messageData);
   
+      }else{
+        console.log('Could not get JSON response');
       }
+      
     });
   }
 
