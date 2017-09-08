@@ -57,13 +57,11 @@ var checkProducts = (senderId) => {
       body :  { categoryName:categoryName },
       method  : 'POST',
       json  : true
-    }, (err, body, response) => {
+    }, (err, response, body) => {
       
-      console.log('Requesting......');
-      if (err && response.statusCode == 200){
+      if (!err && response.statusCode == 200){
         var itemsArray = JSON.parse(body);
-
-        console.log('********',err);
+        console.log('********',itemsArray);
   
         itemsArray.forEach((itemObj) => {
           let itemName  = itemObj.name;
