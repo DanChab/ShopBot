@@ -51,58 +51,7 @@ var checkProducts = (senderId) => {
   var allProductCategory = (senderId, categoryName) => {
     var elements = [];
     var categoryName = categoryName.toLowerCase().trim();
-    
-    request({
-      url : 'https://rapid-resto.herokuapp.com/api/shoprite/getAllProdCategory',
-      method  : 'POST',
-      body :  { categoryName:categoryName },
-      json  : true
-    }, function (error,response, body) {
-      
-      if (!error && response.statusCode == 200){
-        var itemsArray = JSON.parse(body);
-        console(body);
-        console.log('********',itemsArray);
-  
-        itemsArray.forEach((itemObj) => {
-          let itemName  = itemObj.name;
-          let itemPrice = itemObj.price;
-          let itemImg   = itemObj.image;
-          let itemId    = itemObj._id;
-          let common_name = itemObj.common_name;
-  
-           // Adding item to the elements array
-           elements.push({
-            "title": itemName + " " +itemPrice,
-            "subtitle":  common_name,
-            "image_url": itemImg,
-            "buttons": [{
-              "type": "postback",
-              "title": "Order",
-              "payload": "ORDER-"+itemId
-            },
-            {
-              "type": "postback",
-              "title": "Add To List",
-              "payload": "ADD_TO_LIST-"+idItem
-            }]
-          });
-        });
-  
-        let messageData = {
-          "attachment":{
-            "type": "template",
-            "payload": {
-              "template_type": "generic",
-              elements
-      }
-     }
-    }
-  sendMessage(senderId, messageData);
-  
-      }
-      
-    });
+    sendMessage(senderId, {text:'Showing all category products'});
   }
 
   module.exports = {
