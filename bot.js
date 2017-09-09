@@ -107,7 +107,7 @@ var processMessage = (event) => {
     // You may get an attachement or a text but not both
     if (message.text) {
       var formattedMsg = message.text.toLowerCase().trim();
-      getUserName(senderId);
+      var userName = getUserName(senderId);
       switch (formattedMsg) {
         // Greating key words
         case 'hi':
