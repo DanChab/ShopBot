@@ -78,7 +78,7 @@ var checkProducts = (senderId) => {
             {
               "type": "postback",
               "title": "Add To List",
-              "payload": "ADD_TO_LIST-"+idItem
+              "payload": "ADD_TO_LIST-"+itemId
             }]
           });
         });
