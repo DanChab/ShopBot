@@ -18,9 +18,8 @@ var sendMessage = (recipientId, message) => {
 }
 
 var checkProducts = (senderId) => {
-
     var elements = [];
-    request("https://rapid-resto.herokuapp.com/api/shoprite/prodCategory", (error, response, body) =>{
+       request("https://rapid-resto.herokuapp.com/api/shoprite/prodCategory", (error, response, body) =>{
       if (!error && response.statusCode == 200) {
         let prodCtgArray = JSON.parse(body);
         console.log(prodCtgArray);
@@ -37,18 +36,15 @@ var checkProducts = (senderId) => {
         });
         console.log(elements);
         let messageData = {
-          "text":"We have a variety of products...here are the categories 🤗 ",
+          "text":"We have a variety of products...here are the categories  ",
          "quick_replies":
-           elements
-         
+           elements     
      }
      sendMessage(senderId, messageData);
       }
     });
-  
   }
-
-  var allProductCategory = (senderId, ctgName) => {
+var allProductCategory = (senderId, ctgName) => {
     var elements = [];
     var ctgName = ctgName.toLowerCase().trim();
 
@@ -77,7 +73,7 @@ var checkProducts = (senderId) => {
             },
             {
               "type": "postback",
-              "title": "Add To List",
+              "title": "Add To Shopping List",
               "payload": "ADD_TO_LIST-"+itemId
             }]
           });
@@ -97,11 +93,66 @@ var checkProducts = (senderId) => {
       }
       
     });
-  }
+  };
 
-  module.exports = {
+var addToList = (senderId, itemId) => {
+       request({
+      url: "https://rapid-resto.herokuapp.com/api/products/addPizza",
+      method: "POST",
+      body: {
+            userId: senderId,
+            itemId : itemId,
+      },
+      json:true
+    
+    }, function(error, response, body){
+      if (error) throw error;
+      if (!error && response.statusCode == 200){
+         sendMessage(senderId, {text: `${itemName} Added To List...😊`});
+         checkMenu(senderId)
+      }else {
+        sendMessage (senderId, {text:"😖 Hoops, sorry i couldn't save this Pizza to your list!! Try again later..."})
+      }
+     
+    });
+    
+      }
+var confirmAddToList = (senderId, itemId) => {
+    // First get item's details 
+    request(`https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList/itemDetails=${itemId}`, (error, response, body) => {
+      if (!error && response.statusCode == 200) {
+        let itemObj = JSON.parse(body);
+        console.log(itemObj);
+      
+        var idItem = itemObj._id;
+        var itemName = itemObj.name;
+        var itemPrice = itemObj.price;
+        // Create quick reply template
+          let messageData = {
+            "text":`Do you want to add ${itemName} cost:${itemPrice} ?`,
+            "quick_replies":
+              [{
+                "content_type":"text",
+                "title":'Yes',
+                "payload":"YES_ADD_TO_LIST-"+idItem
+            },
+            {
+              "content_type":"text",
+              "title":'No',
+              "payload":"NO_ADD_TO_LIST-"+idItem
+          }]     
+        }
+        sendMessage(senderId, messageData);
+        }else{
+          sendMessage(senderId,{text:'😖😖Sorry try again later...'});
+        };
+      });
+    };
+      
+module.exports = {
     sendMessage,
     allProductCategory,
-    checkProducts
+    checkProducts,
+    confirmAddToList
    
   }
