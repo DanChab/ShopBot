@@ -108,7 +108,22 @@ var processMessage = (event) => {
     if (message.text) {
       var formattedMsg = message.text.toLowerCase().trim();
       
-      var userName = getUserName(senderId);
+      request({
+        url: "https://graph.facebook.com/v2.6/" + senderId,
+        qs: {
+          access_token: process.env.PAGE_ACCESS_TOKEN,
+          fields: "first_name"
+        },
+        method: "GET"
+      }, (error, response, body) => {
+        if (error) {
+          console.log("Error getting user's name: " + error);
+        }else {
+          let bodyObj = JSON.parse(body);
+          var name = bodyObj.first_name;
+          console.log(name)
+          var userName = name;
+          
       switch (formattedMsg) {
         // Greating key words
         case 'hi':
