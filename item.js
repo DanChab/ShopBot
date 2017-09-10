@@ -130,7 +130,7 @@ var confirmAddToList = (senderId, itemId) => {
         });
         // Create quick reply template
           let messageData = {
-            "text":`Do you want to add ${itemName} cost:${itemPrice} ?`,
+            "text":'Do you want to add '+ itemName+ ' cost:'+itemPrice +' ?',
             "quick_replies":[
               {
                 "content_type":"text",
