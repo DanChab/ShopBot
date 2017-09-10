@@ -122,7 +122,7 @@ var confirmAddToList = (senderId, itemId) => {
     request(`https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList/itemDetails=${itemId}`, (error, response, body) => {
       if (!error && response.statusCode == 200) {
         let itemArray = JSON.parse(body);
-        console.log(itemObj);
+        console.log(itemArray);
         itemArray.forEach((itemObj) => {
           var idItem = itemObj._id;
           var itemName = itemObj.name;
