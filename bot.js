@@ -123,7 +123,9 @@ var processMessage = (event) => {
           var name = bodyObj.first_name;
           console.log(name)
           var userName = name;
-          
+        }
+      });
+      
       switch (formattedMsg) {
         // Greating key words
         case 'hi':
