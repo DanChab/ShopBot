@@ -37,7 +37,7 @@ var processPostback = (event) => {
 
     console.log(`str_payload :${strPayload} // iD :${itemId}`);
     switch(strPayload){
-      case 'ADD_ITEM_TO_LIST':
+      case ':ADD_TO_LIST':
       item.confirmAddToList(senderId);
   break;
 
