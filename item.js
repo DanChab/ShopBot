@@ -121,12 +121,13 @@ var confirmAddToList = (senderId, itemId) => {
     // First get item's details 
     request(`https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList/itemDetails=${itemId}`, (error, response, body) => {
       if (!error && response.statusCode == 200) {
-        let itemObj = JSON.parse(body);
+        let itemArray = JSON.parse(body);
         console.log(itemObj);
-      
-        var idItem = itemObj._id;
-        var itemName = itemObj.name;
-        var itemPrice = itemObj.price;
+        itemArray.forEach((itemObj) => {
+          var idItem = itemObj._id;
+          var itemName = itemObj.name;
+          var itemPrice = itemObj.price;
+        });
         // Create quick reply template
           let messageData = {
             "text":`Do you want to add ${itemName} cost:${itemPrice} ?`,
