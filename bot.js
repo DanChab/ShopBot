@@ -107,6 +107,7 @@ var processMessage = (event) => {
     // You may get an attachement or a text but not both
     if (message.text) {
       var formattedMsg = message.text.toLowerCase().trim();
+      
       var userName = getUserName(senderId);
       switch (formattedMsg) {
         // Greating key words
@@ -287,7 +288,7 @@ var getUserName = (senderId) => {
       let bodyObj = JSON.parse(body);
       var name = bodyObj.first_name;
       console.log(name)
-       userName = name;
+      var userName = name;
        console.log("$$$$$$",userName)
        return userName;
     }
