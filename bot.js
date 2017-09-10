@@ -38,8 +38,7 @@ var processPostback = (event) => {
     console.log(`str_payload :${strPayload} // iD :${itemId}`);
     switch(strPayload){
       case 'ADD_ITEM_TO_LIST':
-      item.sendMessage(senderId, {text:'You can add product to your shopping list.'});
-      item.checkProducts(senderId);
+      item.confirmAddToList(senderId);
   break;
 
   case 'DELETE_LIST':
@@ -255,7 +254,7 @@ var processQuickReply = (event) => {
 
           item.sendMessage(senderId, messageData);
         break;
-
+        
         case "YES_DELETE_LIST":
         item.deleteList(senderId);
             break;
