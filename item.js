@@ -127,10 +127,10 @@ var confirmAddToList = (senderId, itemId) => {
           var idItem = itemObj._id;
           var itemName = itemObj.name;
           var itemPrice = itemObj.price;
-        });
+       
         // Create quick reply template
           let messageData = {
-            "text":'Do you want to add '+ itemName+ ' cost:'+itemPrice +' ?',
+            "text":`Do you want to add ${itemName} cost:${itemPrice} ?`,
             "quick_replies":[
               {
                 "content_type":"text",
@@ -144,7 +144,8 @@ var confirmAddToList = (senderId, itemId) => {
           }]     
         }
         sendMessage(senderId, messageData);
-        }else{
+      });
+     }else{
           sendMessage(senderId,{text:'😖😖Sorry try again later...'});
         };
       });
