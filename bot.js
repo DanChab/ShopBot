@@ -124,7 +124,7 @@ var processMessage = (event) => {
           console.log(name)
           var userName = name;
         }
-      });
+     
       
       switch (formattedMsg) {
         // Greating key words
@@ -193,6 +193,7 @@ var processMessage = (event) => {
         item.sendMessage (senderId, {text:"Hummm...am confused, am still learning you know!! If you need help just type 'help'."});
           break;
       }
+    });
     } else if (message.attachments){
       item.senderId(senderId, {text:'sorry i can not read that...'})
       /*
