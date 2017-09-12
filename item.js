@@ -128,7 +128,7 @@ var confirmAddToList = (senderId, itemId) => {
       });
     };
       
-var askQtyItem = (senderId, itemId) => {
+var askQtyItem = (senderId, arg2, arg3, arg4) => {
 
   let messageData = {
     "text":`How many do you want?`,
@@ -136,12 +136,12 @@ var askQtyItem = (senderId, itemId) => {
       {
         "content_type":"text",
         "title":'Just one',
-        "payload":"JUST_ONE_ITEM-"+itemId
+        "payload":`JUST_ONE_ITEM-${itemId}-${itemName}-${itemPrice}`
     },
     {
       "content_type":"text",
       "title":'Many',
-      "payload":"MORE_ITEMS-"+itemId
+      "payload":`MORE_ITEMS-${itemId}-${itemName}-${itemPrice}`
   }]     
   }
   sendMessage(senderId, messageData);
