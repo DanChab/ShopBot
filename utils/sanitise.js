@@ -1,14 +1,14 @@
 var validator = require('validator');
 const item = require('../item.js');
 
-var inputValidator = (senderId, botMsg, userInput, itemId) => {
+var inputValidator = (senderId,itemId, itemName, itemPrice, botMsg, userInput) => {
   switch(botMsg){
     case "Enter new price please.":
       var itemQty = validator.isNumeric(userInput);
       if (itemQty){
         console.log("itemQty IS NUMBER");
         // send params to the api for addition to shopping list
-        item.addToList(senderId,itemId,itemQty);
+        item.addToList(senderId,itemId, itemName, itemPrice,  itemQty);
 
       }else{
         console.log("itemQty IS NOT A NUMBER");
