@@ -2,6 +2,8 @@ const bodyParser = require('body-parser');
 const request = require('request');
 var _ = require('lodash');
 const item = require('./item.js');
+var jf = require('./utils/jsonfile.js');
+var sanitise = require('./utils/sanitise.js');
 
 var processPostback = (event) => {
   let senderId = event.sender.id;
@@ -106,7 +108,18 @@ var processMessage = (event) => {
     // You may get an attachement or a text but not both
     if (message.text) {
       var formattedMsg = message.text.toLowerCase().trim();
-      
+
+       // Check if the json file contains an item to edit
+      var note = jf.getNote(senderId);
+      if(typeof note !=='undefined'){
+        console.log("notes...",note);
+        var botMsg = _.get(note,'item.botMsg');
+        var itemId = _.get(note,'item.itemId');
+        console.log(botMsg);
+        // sanitise the user input so we only get the expected data type.
+        sanitise.inputValidator(senderId, botMsg, formattedMsg, itemId);
+
+      // Get the first name of user from the fb graph api.
       request({
         url: "https://graph.facebook.com/v2.6/" + senderId,
         qs: {
@@ -126,6 +139,7 @@ var processMessage = (event) => {
      
       
       switch (formattedMsg) {
+        
         // Greating key words
         case 'hi':
         case 'hey':
@@ -216,6 +230,7 @@ var processMessage = (event) => {
     }
     
   }
+}
 };
 
 var processQuickReply = (event) => {
@@ -238,7 +253,8 @@ var processQuickReply = (event) => {
           item.askQtyItem(senderId, arg2);
         break;
         case 'MORE_ITEMS':
-        item.confirmQtyItem(senderId);
+        sendMessage(senderId,{text:'How many do you want? 2,3,4....'});
+
         break;
         case "DELETE_LIST":
               let messageData = {

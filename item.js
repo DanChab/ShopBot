@@ -94,29 +94,6 @@ var allProductCategory = (senderId, ctgName) => {
       
     });
   };
-
-var addToList = (senderId, itemId) => {
-       request({
-      url: "https://rapid-resto.herokuapp.com/api/products/addPizza",
-      method: "POST",
-      body: {
-            userId: senderId,
-            itemId : itemId,
-      },
-      json:true
-    
-    }, function(error, response, body){
-      if (error) throw error;
-      if (!error && response.statusCode == 200){
-         sendMessage(senderId, {text: `${itemName} Added To List...😊`});
-         checkMenu(senderId)
-      }else {
-        sendMessage (senderId, {text:"😖 Hoops, sorry i couldn't save this Pizza to your list!! Try again later..."})
-      }
-     
-    });
-    
-      }
 var confirmAddToList = (senderId, itemId) => {
     // First get item's details 
     request(`https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList/itemDetails=${itemId}`, (error, response, body) => {
@@ -169,15 +146,36 @@ var askQtyItem = (senderId, itemId) => {
 }
 sendMessage(senderId, messageData);
 };
-var confirmQtyItem = (senderId, qty) => {
-  sendMessage(senderId,{text:'How many to want? 2,3,4...Tell me.'});
-}
+
+var addToList = (senderId, itemId, itemQty) => {
+  request({
+ url: "https://rapid-resto.herokuapp.com/api/products/addPizza",
+ method: "POST",
+ body: {
+       userId: senderId,
+       itemId : itemId,
+       itemQty:itemQty
+ },
+ json:true
+
+}, function(error, response, body){
+ if (error) throw error;
+ if (!error && response.statusCode == 200){
+    sendMessage(senderId, {text: `${itemName} Added To Shopping List...😊`});
+    checkMenu(senderId)
+ }else {
+   sendMessage (senderId, {text:"😖 Hoops, sorry i couldn't save this Pizza to your list!! Try again later..."})
+ }
+
+});
+
+ }
 module.exports = {
     sendMessage,
     allProductCategory,
     checkProducts,
     confirmAddToList,
     askQtyItem,
-    confirmQtyItem
+    addToList
    
   }
