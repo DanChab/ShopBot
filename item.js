@@ -112,7 +112,7 @@ var confirmAddToList = (senderId, itemId) => {
               {
                 "content_type":"text",
                 "title":'Yes',
-                "payload":"YES_ADD_TO_LIST-"+itemId
+                "payload":`YES_ADD_TO_LIST-${itemId}-${itemName}-${itemPrice}`
             },
             {
               "content_type":"text",
@@ -149,7 +149,7 @@ var askQtyItem = (senderId, itemId) => {
 
 var addToList = (senderId, itemId, itemQty) => {
   request({
- url: "https://lumpus-backend.herokuapp.com/api/products/addPizza",
+ url: "https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList",
  method: "POST",
  body: {
        userId: userId,
