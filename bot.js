@@ -121,7 +121,7 @@ var processMessage = (event) => {
         var itemPrice = _.get(note,'item.itemPrice');
         console.log(botMsg);
         // sanitise the user input so we only get the expected data type.
-        sanitise.inputValidator(senderId, itemName, itemPrice, botMsg, formattedMsg, itemId);
+        sanitise.inputValidator(senderId, itemId, itemName, itemPrice, botMsg, formattedMsg);
       }
       // Get the first name of user from the fb graph api.
       request({
