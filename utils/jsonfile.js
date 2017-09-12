@@ -13,13 +13,16 @@ var saveNotes = (notes) => {
   fs.writeFileSync('tmp/itemList.json', JSON.stringify(notes));
 };
 
-var addNote = (senderId, arg, botMsg) => {
+var addNote = (senderId, arg, itemName, itemPrice, botMsg) => {
   var notes = fetchNotes();
   var note = {
     senderId:senderId,
     item:{
       arg : arg,
+      itemName:itemName,
+      itemPrice:itemPrice,
       botMsg : botMsg
+
     }
   };
   // var duplicateNotes = notes.filter((note) => note.senderId === senderId);

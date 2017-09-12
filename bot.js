@@ -245,7 +245,7 @@ var processQuickReply = (event) => {
         var arg3 = str[2];
         var arg4 = str[3];
     
-        console.log(`arg1 :${arg1} // arg1 :${arg2}// arg1 :${arg3}// arg1 :${arg4}`);
+        console.log(`arg1 :${arg1} // arg2 :${arg2}// arg3 :${arg3}// arg4 :${arg4}`);
 
       switch(arg1){
         case "PRODUCT_CATEGORY":
