@@ -238,7 +238,7 @@ var processQuickReply = (event) => {
           item.askQtyItem(senderId, arg2);
         break;
         case 'MORE_ITEMS':
-        item.askQtyItem(senderId);
+        item.confirmQtyItem(senderId);
         break;
         case "DELETE_LIST":
               let messageData = {

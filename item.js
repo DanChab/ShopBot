@@ -177,6 +177,7 @@ module.exports = {
     allProductCategory,
     checkProducts,
     confirmAddToList,
-    askQtyItem
+    askQtyItem,
+    confirmQtyItem
    
   }
