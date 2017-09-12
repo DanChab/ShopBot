@@ -162,7 +162,7 @@ var addToList = (senderId, itemId, itemQty) => {
  if (error) throw error;
  if (!error && response.statusCode == 200){
     sendMessage(senderId, {text: `Added To Shopping List...😊`});
-    checkMenu(senderId)
+    checkProducts(senderId)
  }else {
    sendMessage (senderId, {text:"😖 Hoops, sorry i couldn't save this Pizza to your list!! Try again later..."})
  }
