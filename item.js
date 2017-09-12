@@ -143,9 +143,9 @@ var askQtyItem = (senderId, itemId) => {
       "title":'Many',
       "payload":"MORE_ITEMS-"+itemId
   }]     
-}
-sendMessage(senderId, messageData);
-};
+  }
+  sendMessage(senderId, messageData);
+  };
 
 var addToList = (senderId, itemId, itemQty) => {
   request({
