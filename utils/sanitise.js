@@ -8,7 +8,7 @@ var inputValidator = (senderId, botMsg, userInput, itemId) => {
       if (itemQty){
         console.log("itemQty IS NUMBER");
         // send params to the api for addition to shopping list
-        item.addToList(senderId,itemId,itemQty);
+        item.addToList(senderId,itemId,itemQty,itemname);
 
       }else{
         console.log("itemQty IS NOT A NUMBER");

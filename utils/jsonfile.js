@@ -13,7 +13,7 @@ var saveNotes = (notes) => {
   fs.writeFileSync('tmp/itemList.json', JSON.stringify(notes));
 };
 
-var addNote = (senderId, arg, botMsg,itemName) => {
+var addNote = (senderId, arg, itemName, botMsg) => {
   var notes = fetchNotes();
   var note = {
     senderId:senderId,
