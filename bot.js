@@ -235,7 +235,6 @@ var processMessage = (event) => {
 
 var processQuickReply = (event) => {
   let message = event.message;
-
   if (message.quick_reply) {
         let payload = message.quick_reply.payload;
         let senderId = event.sender.id;
@@ -253,7 +252,13 @@ var processQuickReply = (event) => {
           item.askQtyItem(senderId, arg2);
         break;
         case 'MORE_ITEMS':
-        sendMessage(senderId,{text:'How many do you want? 2,3,4....'});
+          var botMsg = 'How many do you want? 2,3,4....';
+          // Then Write the message bot to the json note (question item qty).
+          // var formattedBotMsg = botMsg.toLowerCase().trim();
+          jf.addNote(senderId, arg2, botMsg);
+          var checkNote = jf.getNote(senderId);
+          console.log("Wrote to json file : ", checkNote);
+          sendMessage(senderId,{text:botMsg});
 
         break;
         case "DELETE_LIST":
