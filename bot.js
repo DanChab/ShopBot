@@ -118,7 +118,7 @@ var processMessage = (event) => {
         console.log(botMsg);
         // sanitise the user input so we only get the expected data type.
         sanitise.inputValidator(senderId, botMsg, formattedMsg, itemId);
-
+      }
       // Get the first name of user from the fb graph api.
       request({
         url: "https://graph.facebook.com/v2.6/" + senderId,
@@ -135,9 +135,7 @@ var processMessage = (event) => {
           var name = bodyObj.first_name;
           console.log(name)
           var userName = name;
-        }
-     
-      
+        } 
       switch (formattedMsg) {
         
         // Greating key words
@@ -230,7 +228,6 @@ var processMessage = (event) => {
     }
     
   }
-}
 };
 
 var processQuickReply = (event) => {
