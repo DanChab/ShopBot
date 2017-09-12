@@ -43,61 +43,61 @@ var processPostback = (event) => {
     switch(arg1){
       case 'ADD_TO_LIST':
       item.confirmAddToList(senderId, arg2, arg3, arg4);
-  break;
+      break;
 
-  case 'DELETE_LIST':
-        let messageData = {
-        'text':'Confirm if you want to DELETE.',
-        'quick_replies':[
-          {
-            'content_type':'text',
-            'title':'Cancel',
-            'payload':'NO_DELETE_LIST'
-          },
-          {
-            'content_type':'text',
-            'title':'Delete',
-            'payload':'YES_DELETE_LIST'
-          }
-        ]
+      case 'DELETE_LIST':
+            let messageData = {
+            'text':'Confirm if you want to DELETE.',
+            'quick_replies':[
+              {
+                'content_type':'text',
+                'title':'Cancel',
+                'payload':'NO_DELETE_LIST'
+              },
+              {
+                'content_type':'text',
+                'title':'Delete',
+                'payload':'YES_DELETE_LIST'
+              }
+            ]
+        }
+
+        item.sendMessage(senderId, messageData);
+      break;
+
+      case 'YES_DELETE_LIST':
+      item.deleteList(senderId);
+          break;
+      case 'NO_DELETE_LIST':
+      item.sendMessage(senderId, {text:'You can add more items... '})
+      item.checkProducts(senderId);
+          break;
+      case 'CREATE_SHOPPING_LIST':
+      item.checkProducts(senderId);
+          break;
+      /*
+      case 'PASS_ORDER_LIST':
+          order.sendMessage(senderId, {text:'Please confirm your order?'})
+          order.confirmListOrder(senderId);
+          break;
+          
+      case 'YES_ORDER_LIST':
+          order.passListOrder(senderId);
+          order.shareLocation(senderId);
+          break;
+      case 'NO_ORDER_LIST':
+        order.checkProducts(senderId);
+          break;
+      case 'ONE_PIZZA':
+        order.confirmOrder(senderId, arg2);
+          break;
+      case 'MORE_PIZZA':
+        order.sendMessage(senderId, {text:'I will added your PIZZA to the list, just type 'list' and order all of them 😊' });
+        order.addToList(senderId,arg2)
+        */
+      }
     }
-
-    item.sendMessage(senderId, messageData);
-  break;
-
-  case 'YES_DELETE_LIST':
-  item.deleteList(senderId);
-      break;
-  case 'NO_DELETE_LIST':
-  item.sendMessage(senderId, {text:'You can add more items... '})
-  item.checkProducts(senderId);
-      break;
-  case 'CREATE_SHOPPING_LIST':
-  item.checkProducts(senderId);
-      break;
-  /*
-  case 'PASS_ORDER_LIST':
-      order.sendMessage(senderId, {text:'Please confirm your order?'})
-      order.confirmListOrder(senderId);
-      break;
-      
-  case 'YES_ORDER_LIST':
-      order.passListOrder(senderId);
-      order.shareLocation(senderId);
-      break;
-  case 'NO_ORDER_LIST':
-    order.checkProducts(senderId);
-      break;
-  case 'ONE_PIZZA':
-    order.confirmOrder(senderId, arg2);
-      break;
-  case 'MORE_PIZZA':
-    order.sendMessage(senderId, {text:'I will added your PIZZA to the list, just type 'list' and order all of them 😊' });
-    order.addToList(senderId,arg2)
-    */
-  }
-}
-};
+    };
 
 var processMessage = (event) => {
   if (!event.message.is_echo) {
