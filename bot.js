@@ -234,7 +234,12 @@ var processQuickReply = (event) => {
         case "PRODUCT_CATEGORY":
             item.allProductCategory(senderId,categoryName);
         break;
-
+        case 'YES_ADD_TO_LIST':
+          item.askQtyItem(senderId);
+        break;
+        case 'MORE_ITEMS':
+        item.askQtyItem(senderId);
+        break;
         case "DELETE_LIST":
               let messageData = {
               "text":"Confirm if you want to DELETE.",

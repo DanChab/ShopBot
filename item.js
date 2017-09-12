@@ -151,10 +151,32 @@ var confirmAddToList = (senderId, itemId) => {
       });
     };
       
+var askQtyItem = (senderId) => {
+
+  let messageData = {
+    "text":`How many do you want?`,
+    "quick_replies":[
+      {
+        "content_type":"text",
+        "title":'Just one',
+        "payload":"JUST_ONE_ITEM-"+idItem
+    },
+    {
+      "content_type":"text",
+      "title":'Many',
+      "payload":"MORE_ITEMS-"+idItem
+  }]     
+}
+sendMessage(senderId, messageData);
+};
+var confirmQtyItem = (senderId, qty) => {
+  sendMessage(senderId,{text:'How many to want? 2,3,4...Tell me.'});
+}
 module.exports = {
     sendMessage,
     allProductCategory,
     checkProducts,
-    confirmAddToList
+    confirmAddToList,
+    askQtyItem
    
   }
