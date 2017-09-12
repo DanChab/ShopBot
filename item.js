@@ -1,4 +1,5 @@
 const request = require('request');
+var jf = require('./utils/jsonfile.js');
 
 // Sending message to user
 var sendMessage = (recipientId, message) => {
@@ -129,7 +130,6 @@ var confirmAddToList = (senderId, itemId) => {
     };
       
 var askQtyItem = (senderId, arg2, arg3, arg4) => {
-
   let messageData = {
     "text":`How many do you want?`,
     "quick_replies":[
@@ -148,30 +148,33 @@ var askQtyItem = (senderId, arg2, arg3, arg4) => {
   };
 
 var addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
-  request({
- url: "https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList",
- method: "POST",
- body: {
-       userId : senderId,
-       itemId : itemId,
-       itemName :  itemName,
-       itemPrice  : itemPrice,
-       itemQty  : itemQty
- },
- json:true
+    request({
+    url: "https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList",
+    method: "POST",
+    body: {
+          userId : senderId,
+          itemId : itemId,
+          itemName :  itemName,
+          itemPrice  : itemPrice,
+          itemQty  : itemQty
+    },
+    json:true
 
-}, function(error, response, body){
- if (error) throw error;
- if (!error && response.statusCode == 200){
-    sendMessage(senderId, {text: `Added To Shopping List...😊`});
-    checkProducts(senderId)
- }else {
-   sendMessage (senderId, {text:"😖 Hoops, sorry i couldn't save this Pizza to your list!! Try again later..."})
- }
+    }, function(error, response, body){
+    if (error) throw error;
+    if (!error && response.statusCode == 200){
+        sendMessage(senderId, {text: `Added To Shopping List...😊`});
 
-});
+        //Delete the item form the json file
+        jf.removeNote(senderId);
+        checkProducts(senderId)
+    }else {
+      sendMessage (senderId, {text:"😖 Hoops, sorry i couldn't save this Pizza to your list!! Try again later..."})
+    }
 
- }
+    });
+
+    }
 module.exports = {
     sendMessage,
     allProductCategory,
