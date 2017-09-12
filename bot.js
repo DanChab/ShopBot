@@ -258,7 +258,7 @@ var processQuickReply = (event) => {
           jf.addNote(senderId, arg2, botMsg);
           var checkNote = jf.getNote(senderId);
           console.log("Wrote to json file : ", checkNote);
-          sendMessage(senderId,{text:botMsg});
+          item.sendMessage(senderId,{text:botMsg});
         case 'JUST_ONE_ITEM':
           var qty = 1;
           item.addToList(senderId, arg2,qty);
