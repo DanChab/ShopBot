@@ -240,8 +240,10 @@ var processQuickReply = (event) => {
         var str = payload.split('-');
         var arg1 = str[0];
         var arg2 = str[1];
-
-        console.log(`arg1 :${arg1} // arg2 :${arg2}`);
+        var arg3 = str[2];
+        var arg4 = str[3];
+    
+        console.log(`arg1 :${arg1} // arg1 :${arg2}// arg1 :${arg3}// arg1 :${arg4}`);
 
       switch(arg1){
         case "PRODUCT_CATEGORY":
@@ -257,13 +259,13 @@ var processQuickReply = (event) => {
           var botMsg = 'How many do you want? 2,3,4....';
           // Then Write the message bot to the json note (question item qty).
           // var formattedBotMsg = botMsg.toLowerCase().trim();
-          jf.addNote(senderId, arg2, botMsg);
+          jf.addNote(senderId, arg2, arg3, arg4, botMsg);
           var checkNote = jf.getNote(senderId);
           console.log("Wrote to json file : ", checkNote);
           item.sendMessage(senderId,  {text:botMsg});
         case 'JUST_ONE_ITEM':
           var qty = 1;
-          item.addToList(senderId, arg2,  qty);
+          item.addToList(senderId, arg2, arg3, arg4, qty);
         break;
         case "DELETE_LIST":
               let messageData = {
