@@ -248,6 +248,9 @@ var processQuickReply = (event) => {
         case "PRODUCT_CATEGORY":
             item.allProductCategory(senderId,arg2);
         break;
+        case 'NO_ADD_TO_LIST':
+          item.checkProducts(senderId);
+          break;
         case 'YES_ADD_TO_LIST':
           item.askQtyItem(senderId, arg2);
         break;
