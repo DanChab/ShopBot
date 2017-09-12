@@ -19,7 +19,7 @@ var sendMessage = (recipientId, message) => {
 
 var checkProducts = (senderId) => {
     var elements = [];
-       request("https://rapid-resto.herokuapp.com/api/shoprite/prodCategory", (error, response, body) =>{
+       request("https://lumpus-backend.herokuapp.com/api/shoprite/prodCategory", (error, response, body) =>{
       if (!error && response.statusCode == 200) {
         let prodCtgArray = JSON.parse(body);
         console.log(prodCtgArray);
@@ -48,7 +48,7 @@ var allProductCategory = (senderId, ctgName) => {
     var elements = [];
     var ctgName = ctgName.toLowerCase().trim();
 
-    request(`https://rapid-resto.herokuapp.com/api/shoprite/prodCategory/ctg_name=${ctgName}`, (error,response, body) => {
+    request(`https://lumpus-backend.herokuapp.com/api/shoprite/prodCategory/ctg_name=${ctgName}`, (error,response, body) => {
       
       if (!error && response.statusCode == 200){
         var itemsArray = JSON.parse(body);
@@ -149,7 +149,7 @@ var askQtyItem = (senderId, itemId) => {
 
 var addToList = (senderId, itemId, itemQty) => {
   request({
- url: "https://rapid-resto.herokuapp.com/api/products/addPizza",
+ url: "https://lumpus-backend.herokuapp.com/api/products/addPizza",
  method: "POST",
  body: {
        userId: userId,
