@@ -32,13 +32,13 @@ var processPostback = (event) => {
   }
   if (payload !=null) {
     var str = payload.split('-');
-    var strPayload = str[0];
-    var itemId = str[1];
+    var arg1 = str[0];
+    var arg2 = str[1];
 
-    console.log(`str_payload :${strPayload} // iD :${itemId}`);
-    switch(strPayload){
+    console.log(`arg1 :${arg1} // arg1 :${arg2}`);
+    switch(arg1){
       case 'ADD_TO_LIST':
-      item.confirmAddToList(senderId, itemId);
+      item.confirmAddToList(senderId, arg2);
   break;
 
   case 'DELETE_LIST':
@@ -85,11 +85,11 @@ var processPostback = (event) => {
     order.checkProducts(senderId);
       break;
   case 'ONE_PIZZA':
-    order.confirmOrder(senderId, itemId);
+    order.confirmOrder(senderId, arg2);
       break;
   case 'MORE_PIZZA':
     order.sendMessage(senderId, {text:'I will added your PIZZA to the list, just type 'list' and order all of them 😊' });
-    order.addToList(senderId,itemId)
+    order.addToList(senderId,arg2)
     */
   }
 }
@@ -225,17 +225,17 @@ var processQuickReply = (event) => {
         let payload = message.quick_reply.payload;
         let senderId = event.sender.id;
         var str = payload.split('-');
-        var strPayload = str[0];
-        var categoryName = str[1];
+        var arg1 = str[0];
+        var arg2 = str[1];
 
-        console.log(`str_payload :${strPayload} // Category :${categoryName}`);
+        console.log(`arg1 :${arg1} // arg2 :${arg2}`);
 
-      switch(strPayload){
+      switch(arg1){
         case "PRODUCT_CATEGORY":
-            item.allProductCategory(senderId,categoryName);
+            item.allProductCategory(senderId,arg2);
         break;
         case 'YES_ADD_TO_LIST':
-          item.askQtyItem(senderId);
+          item.askQtyItem(senderId, arg2);
         break;
         case 'MORE_ITEMS':
         item.askQtyItem(senderId);
@@ -284,11 +284,11 @@ var processQuickReply = (event) => {
           order.checkMenu(senderId);
             break;
         case "ONE_PIZZA":
-          order.confirmOrder(senderId, itemId);
+          order.confirmOrder(senderId, arg2);
             break;
         case "MORE_PIZZA":
           order.sendMessage(senderId, {text:'I will added your PIZZA to the list, just type "list" and order all of them 😊' });
-          order.addToList(senderId,itemId)
+          order.addToList(senderId,arg2)
       */
       }
    }

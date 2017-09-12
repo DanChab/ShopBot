@@ -124,7 +124,7 @@ var confirmAddToList = (senderId, itemId) => {
         let itemArray = JSON.parse(body);
         console.log(itemArray);
         itemArray.forEach((itemObj) => {
-          var idItem = itemObj._id;
+          var itemId = itemObj._id;
           var itemName = itemObj.name;
           var itemPrice = itemObj.price;
        
@@ -135,12 +135,12 @@ var confirmAddToList = (senderId, itemId) => {
               {
                 "content_type":"text",
                 "title":'Yes',
-                "payload":"YES_ADD_TO_LIST-"+idItem
+                "payload":"YES_ADD_TO_LIST-"+itemId
             },
             {
               "content_type":"text",
               "title":'No',
-              "payload":"NO_ADD_TO_LIST-"+idItem
+              "payload":"NO_ADD_TO_LIST-"+itemId
           }]     
         }
         sendMessage(senderId, messageData);
@@ -151,7 +151,7 @@ var confirmAddToList = (senderId, itemId) => {
       });
     };
       
-var askQtyItem = (senderId) => {
+var askQtyItem = (senderId, itemId) => {
 
   let messageData = {
     "text":`How many do you want?`,
@@ -159,12 +159,12 @@ var askQtyItem = (senderId) => {
       {
         "content_type":"text",
         "title":'Just one',
-        "payload":"JUST_ONE_ITEM-"+idItem
+        "payload":"JUST_ONE_ITEM-"+itemId
     },
     {
       "content_type":"text",
       "title":'Many',
-      "payload":"MORE_ITEMS-"+idItem
+      "payload":"MORE_ITEMS-"+itemId
   }]     
 }
 sendMessage(senderId, messageData);
