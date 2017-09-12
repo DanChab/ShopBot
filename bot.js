@@ -251,7 +251,7 @@ var processQuickReply = (event) => {
           item.checkProducts(senderId);
           break;
         case 'YES_ADD_TO_LIST':
-          item.askQtyItem(senderId, arg2);
+          item.askQtyItem(senderId, arg2, arg3, arg4);
         break;
         case 'MORE_ITEMS':
           var botMsg = 'How many do you want? 2,3,4....';
