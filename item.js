@@ -147,14 +147,16 @@ var askQtyItem = (senderId, arg2, arg3, arg4) => {
   sendMessage(senderId, messageData);
   };
 
-var addToList = (senderId, itemId, itemQty) => {
+var addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
   request({
  url: "https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList",
  method: "POST",
  body: {
-       userId: userId,
+       userId : senderId,
        itemId : itemId,
-       itemQty:itemQty
+       itemName :  itemName,
+       itemPrice  : itemPrice,
+       itemQty  : itemQty
  },
  json:true
 
