@@ -243,7 +243,7 @@ var processQuickReply = (event) => {
 
       switch(arg1){
         case "PRODUCT_CATEGORY":
-            item.allProductCategory(senderId,arg2);
+            item.allProductCategory(senderId, arg2);
         break;
         case 'NO_ADD_TO_LIST':
           item.checkProducts(senderId);
@@ -258,10 +258,10 @@ var processQuickReply = (event) => {
           jf.addNote(senderId, arg2, botMsg);
           var checkNote = jf.getNote(senderId);
           console.log("Wrote to json file : ", checkNote);
-          item.sendMessage(senderId,{text:botMsg});
+          item.sendMessage(senderId,  {text:botMsg});
         case 'JUST_ONE_ITEM':
           var qty = 1;
-          item.addToList(senderId, arg2,qty);
+          item.addToList(senderId, arg2,  qty);
         break;
         case "DELETE_LIST":
               let messageData = {
