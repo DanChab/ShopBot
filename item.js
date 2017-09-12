@@ -136,12 +136,12 @@ var askQtyItem = (senderId, arg2, arg3, arg4) => {
       {
         "content_type":"text",
         "title":'Just one',
-        "payload":`JUST_ONE_ITEM-${itemId}-${itemName}-${itemPrice}`
+        "payload":`JUST_ONE_ITEM-${arg2}-${arg3}-${arg4}`
     },
     {
       "content_type":"text",
       "title":'Many',
-      "payload":`MORE_ITEMS-${itemId}-${itemName}-${itemPrice}`
+      "payload":`MORE_ITEMS-${arg2}-${arg3}-${arg4}`
   }]     
   }
   sendMessage(senderId, messageData);
