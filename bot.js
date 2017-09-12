@@ -36,11 +36,13 @@ var processPostback = (event) => {
     var str = payload.split('-');
     var arg1 = str[0];
     var arg2 = str[1];
+    var arg3 = str[2];
+    var arg4 = str[3];
 
-    console.log(`arg1 :${arg1} // arg1 :${arg2}`);
+    console.log(`arg1 :${arg1} // arg1 :${arg2}// arg1 :${arg3}// arg1 :${arg4}`);
     switch(arg1){
       case 'ADD_TO_LIST':
-      item.confirmAddToList(senderId, arg2);
+      item.confirmAddToList(senderId, arg2, arg3, arg4);
   break;
 
   case 'DELETE_LIST':
