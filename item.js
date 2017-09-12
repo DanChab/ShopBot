@@ -140,7 +140,7 @@ var askQtyItem = (senderId, arg2, arg3, arg4) => {
     },
     {
       "content_type":"text",
-      "title":'Many',
+      "title":'More',
       "payload":`MORE_ITEMS-${arg2}-${arg3}-${arg4}`
   }]     
   }

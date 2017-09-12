@@ -258,7 +258,7 @@ var processQuickReply = (event) => {
           item.askQtyItem(senderId, arg2, arg3, arg4);
         break;
         case 'MORE_ITEMS':
-          var botMsg = 'How many do you want? 2,3,4....';
+          var botMsg = 'Give me a number, how many.';
           // Then Write the message bot to the json note (question item qty).
           // var formattedBotMsg = botMsg.toLowerCase().trim();
           jf.addNote(senderId, arg2, arg3, arg4, botMsg);
