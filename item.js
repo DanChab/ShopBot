@@ -152,7 +152,7 @@ var addToList = (senderId, itemId, itemQty) => {
  url: "https://rapid-resto.herokuapp.com/api/products/addPizza",
  method: "POST",
  body: {
-       userId: senderId,
+       userId: userId,
        itemId : itemId,
        itemQty:itemQty
  },
