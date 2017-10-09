@@ -177,12 +177,76 @@ var addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
     });
 
     }
+
+    var checkItemList = (senderId) => {
+      var listItem = "";
+      var total = 0;
+      // Check if the user has a list
+      request("https://rapid-resto.herokuapp.com/api/shoprite/shoppingList="+senderId, function(error, response, body){
+        if (!error && response.statusCode == 200){
+            var listArray = JSON.parse(body);
+            if (listArray.length != 0) {
+              listArray.forEach(function(listObj){
+                var itemName = listObj.itemName;
+                var itemPrice = listObj.itemPrice;
+                var itemQty = listObj.itemQty;
+                var itemPriceFloat = parseFloat(itemPrice.slice(1));
+                var itemId = listObj._id;
+                var QtyItemPrice = itemPrice*itemQty;
+                total += QtyItemPrice;
+
+                
+                listItem +="•"+itemName+"=> " + itemPrice+  itemQty+"\n";
+              });
+    
+              let messageData = {
+                   "text":"📝 SHOPPING LIST 📝 \n" +"------------------------------------"+"\n"+ listItem + "=============="+"\n"+"Total =k "+total,
+                  "quick_replies":[
+                    {
+                      "content_type":"text",
+                      "title":"Add Pizza",
+                      "payload":"ADD_ITEM_TO_LIST"
+                    },
+                    {
+                      "content_type":"text",
+                      "title":"Delete List",
+                      "payload":"DELETE_LIST"
+                    },
+                    {
+                      "content_type":"text",
+                      "title":"Pass Order",
+                      "payload":"PASS_ORDER_LIST"
+                    }
+                  ]
+              }
+              sendMessage(senderId, messageData);
+            }
+            else{
+           let messageData = {
+                  "text":"You have no PIZZA on list!!.",
+                  "quick_replies":[
+                    {
+                      "content_type":"text",
+                      "title":"Creat List For Pizza",
+                      "payload":"CREATE_PIZZA_LIST"
+                    }
+                  ]
+              }
+              sendMessage(senderId, messageData);
+        }
+    
+        }else{
+          sendMessage(sendMessage, {text: "😕 Ooops something went wrong, allow me to check myself...be back in a moment"});
+        }
+    
+      });
+    }
 module.exports = {
     sendMessage,
     allProductCategory,
     checkProducts,
     confirmAddToList,
     askQtyItem,
-    addToList
-   
+    addToList,
+    checkItemList 
   }
