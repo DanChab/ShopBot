@@ -198,7 +198,7 @@ var processMessage = (event) => {
           break;
         //List message
         case 'list':
-       // item.checkItemList(senderId);
+        item.checkItemList(senderId);
         break
         //Help message
       case 'helps':
