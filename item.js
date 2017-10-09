@@ -182,7 +182,7 @@ var addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
       var listItem = "";
       var total = 0;
       // Check if the user has a list
-      request("https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList="+senderId, function(error, response, body){
+      request("https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList/listId="+senderId, function(error, response, body){
         if (!error && response.statusCode == 200){
             var listArray = JSON.parse(body);
             if (listArray.length != 0) {
