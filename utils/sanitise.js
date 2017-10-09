@@ -9,7 +9,7 @@ var inputValidator = (senderId,itemId, itemName, itemPrice, botMsg, userInput) =
         console.log("itemQty IS NUMBER");
         // send params to the api for addition to shopping list
         item.addToList(senderId,itemId, itemName, itemPrice,  itemQty);
-
+        return;
       }else{
         console.log("itemQty IS NOT A NUMBER");
         item.sendMessage(senderId, {text: "Ooops that does not look like a valide number.."});

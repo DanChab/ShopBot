@@ -165,11 +165,13 @@ var addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
     if (!error && response.statusCode == 200){
         sendMessage(senderId, {text: `Added To Shopping List...😊`});
 
+        // Take the user back to check products
+        checkProducts(senderId);
         //Delete the item form the json file
         jf.removeNote(senderId);
         checkProducts(senderId)
     }else {
-      sendMessage (senderId, {text:"😖 Hoops, sorry i couldn't save this Pizza to your list!! Try again later..."})
+      sendMessage (senderId, {text:"😖 Hoops, sorry i couldn't save this item to your list!! Try again later..."})
     }
 
     });
