@@ -3,7 +3,7 @@ const item = require('../item.js');
 
 var inputValidator = (senderId,itemId, itemName, itemPrice, botMsg, userInput) => {
   switch(botMsg){
-    case "Enter new price please.":
+    case "Give me a number, how many.":
       var itemQty = validator.isNumeric(userInput);
       if (itemQty){
         console.log("itemQty IS NUMBER");
