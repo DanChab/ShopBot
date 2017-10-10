@@ -274,5 +274,6 @@ module.exports = {
     confirmAddToList,
     askQtyItem,
     addToList,
-    checkItemList 
+    checkItemList,
+    deleteList 
   }
