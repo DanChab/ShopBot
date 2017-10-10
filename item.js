@@ -224,7 +224,7 @@ var addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
             }
             else{
            let messageData = {
-                  "text":"You have no PIZZA on list!!.",
+                  "text":"You have no ShoppingList!!.",
                   "quick_replies":[
                     {
                       "content_type":"text",
