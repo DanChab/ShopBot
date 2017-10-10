@@ -228,7 +228,7 @@ var addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
                   "quick_replies":[
                     {
                       "content_type":"text",
-                      "title":"Creat List For Pizza",
+                      "title":"Create Shopping List",
                       "payload":"CREATE_PIZZA_LIST"
                     }
                   ]
