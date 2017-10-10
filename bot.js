@@ -296,10 +296,10 @@ var processQuickReply = (event) => {
             break;
         case "NO_DELETE_LIST":
         item.sendMessage(senderId, {text:"You can add more items... "})
-        item.checkMenu(senderId);
+        item.checkProducts(senderId);
             break;
         case "CREATE_PIZZA_LIST":
-        item.checkMenu(senderId);
+        item.checkProducts(senderId);
             break;
       /*
         case "PASS_ORDER_LIST":
