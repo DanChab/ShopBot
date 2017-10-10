@@ -181,6 +181,7 @@ var addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
     var checkItemList = (senderId) => {
       var listItem = "";
       var total = 0;
+      var QtyItemPrice = 0;
       // Check if the user has a list
       request("https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList/listId="+senderId, function(error, response, body){
         if (!error && response.statusCode == 200){
@@ -240,6 +241,31 @@ var addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
         }
     
       });
+    }
+
+    var deleteList = (senderId) => {
+      // request("https://rafikibot-api.herokuapp.com/api/products/shoppingListDel="+senderId, function(error, response, body){
+      //   if (!error && response.statusCode == 200) {
+      //     console.log("DELETED SUCCESSFUL");
+      //   }
+      // });
+    
+      request({
+      url: "https://shoprite-bot-demo.herokuapp.com/api/shoprite/shoppingList",
+      method: "DELETE",
+      body: { senderId: senderId },
+      json:true
+    
+    }, function(error, response, body){
+      if (error) throw error;
+      if (!error && response.statusCode == 200){
+           sendMessage(senderId, {text: " List deleted!"})
+      }else{
+        sendMessage (senderId, {text:" 😕 Sorry i could not delete your list, please try later"})
+      }
+     
+    
+    });
     }
 module.exports = {
     sendMessage,
