@@ -9,29 +9,40 @@ var processPostback = (event) => {
   let senderId = event.sender.id;
   let payload = event.postback.payload;
 
-  if (payload === 'GET_STARTED_PAYLOAD'){
-    // Get user's first name from the User Profile API
-    // and include it in the Greeting message
-    request({
-      url : 'https://graph.facebook.com/v2.6/' + senderId,
-      qs : {
-        access_token : process.env.PAGE_ACCESS_TOKEN,
-        fields:'first_name'
-      },
-      method: 'GET'
-    }, (err, response, body) => {
-        let greeting = '';
-        if (err) {
-          console.log("Error greeting user's name:" + err);
-        }else{
-          let bodyObj = JSON.parse(body);
-          var name = bodyObj.first_name;
-          greeting = `Hi ${name} ,`;
-        }
-        let message = `${greeting} am the ShopRite robot, I can show you products prices and notify you for promotions and discounts. Type 'product' to check products or 'help' to get help menue`;
-        item.sendMessage(senderId,{text:message});
-    });
-  }
+  switch(payload){
+    case 'GET_STARTED_PAYLOAD':
+      // Get user's first name from the User Profile API
+      // and include it in the Greeting message
+      request({
+        url : 'https://graph.facebook.com/v2.6/' + senderId,
+        qs : {
+          access_token : process.env.PAGE_ACCESS_TOKEN,
+          fields:'first_name'
+        },
+        method: 'GET'
+      }, (err, response, body) => {
+          let greeting = '';
+          if (err) {
+            console.log("Error greeting user's name:" + err);
+          }else{
+            let bodyObj = JSON.parse(body);
+            var name = bodyObj.first_name;
+            greeting = `Hi ${name} ,`;
+          }
+          let message = `${greeting} am the ShopRite robot, I can show you products prices and notify you for promotions and discounts. Type 'product' to check products or 'help' to get help menue`;
+          item.sendMessage(senderId,{text:message});
+      });
+    break;
+
+    case 'PRODUCTS':
+      item.checkProducts(senderId);
+    break;
+
+    case 'MY_SHOPPING_LIST':
+      item.checkItemList(senderId);
+    break;
+  };
+ 
   if (payload !=null) {
     var str = payload.split('-');
     var arg1 = str[0];

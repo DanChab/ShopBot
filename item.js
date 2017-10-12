@@ -11,7 +11,7 @@ var sendMessage = (recipientId, message) => {
       recipient: {id: recipientId},
       message:message,
     }
-  }, function(error, response, body) {
+  }, (error, response, body) => {
     if (error) {
       console.log("Error sending message: " + response.error);
     }
@@ -181,7 +181,7 @@ var addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
     var checkItemList = (senderId) => {
       var listItem = "";
       var total = 0;
-      var QtyItemPrice = 0;
+      
       // Check if the user has a list
       request("https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList/listId="+senderId, function(error, response, body){
         if (!error && response.statusCode == 200){
@@ -193,8 +193,8 @@ var addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
                 var itemQty = listObj.itemQty;
                 var itemPriceFloat = parseFloat(itemPrice.slice(1));
                 var itemId = listObj._id;
-                var QtyItemPrice = itemPrice*itemQty;
-                total += QtyItemPrice;
+                
+                total += itemPrice*itemQty;
 
                 
                 listItem +="•"+itemName+"=> " + itemPrice+  itemQty+"\n";
