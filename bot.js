@@ -27,9 +27,9 @@ var processPostback = (event) => {
           }else{
             let bodyObj = JSON.parse(body);
             var name = bodyObj.first_name;
-            greeting = `Hi ${name} ,`;
+            greeting = `Hi ${name} !,`;
           }
-          let message = `${greeting} am the ShopRite robot, I can show you products prices and notify you for promotions and discounts. Type 'product' to check products or 'help' to get help menue`;
+          let message = `${greeting} I'm the shopRite bot, i will keep you up to date with the latest promotion and prices of all products.Go ahaed and type product to check all products prices`;
           item.sendMessage(senderId,{text:message});
       });
     break;
