@@ -300,18 +300,12 @@ var checkProductsOnPromo = (senderId) => {
           //   ]
           // });
           var messageData = {
-            "recipient":{
-              "id":senderId
-            },
-            "message":{
               "attachment":{
                 "type":"video",
                 "payload":{
                   "url":promoImage
                 }
               }
-            }
-          
       };
         sendMessage(senderId, messageData);
         });
