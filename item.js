@@ -285,17 +285,8 @@ var checkProductsOnPromo = (senderId) => {
            elements.push({
             "title": `From ${dateFrom} to ${dateTo}`,
             "subtitle":  description,
-            "image_url": promoImage
-            // "buttons": [{
-            //   "type": "postback",
-            //   "title": "Order",
-            //   "payload": "ORDER-"+itemId
-            // },
-            // {
-            //   "type": "postback",
-            //   "title": "Add To Shopping List",
-            //   "payload": "ADD_TO_LIST-"+itemId
-            // }]
+            "image_url": promoImage,
+            "buttons": []
           });
           var messageData = {
             "attachment":{
