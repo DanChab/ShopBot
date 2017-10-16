@@ -271,7 +271,7 @@ var deleteList = (senderId) => {
 var checkProductsOnPromo = (senderId) => {
     var element = [];
 
-    request("", (error, response, body) => {
+    request("https://lumpus-backend.herokuapp.com/api/shoprite/getProductsPromo/promo", (error, response, body) => {
       if(!error && response.statusCode == 200){
         var arrayObj = JSON.parse(body);
         arrayObj.forEach((promoDetails) => {
