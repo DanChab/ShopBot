@@ -307,7 +307,11 @@ var checkProductsOnPromo = (senderId) => {
       };
         sendMessage(senderId, messageData);
         });
-// Show the like message with a quick reply
+      }
+    });
+
+    var likePromo = (senderId) =>{
+      // Show the like message with a quick reply
     let messageData = {
       "text":"Did You Like This? ",
     "quick_replies":[
@@ -324,8 +328,7 @@ var checkProductsOnPromo = (senderId) => {
     ]
     }
 sendMessage(senderId, messageData);
-      }
-    });
+    };
 }
 module.exports = {
     sendMessage,
@@ -336,5 +339,6 @@ module.exports = {
     askQtyItem,
     addToList,
     checkItemList,
-    deleteList 
+    deleteList ,
+    likePromo
   }
