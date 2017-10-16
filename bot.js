@@ -40,6 +40,7 @@ var processPostback = (event) => {
 
     case 'PRODUCT_ON_PROMO':
     item.checkProductsOnPromo(senderId);
+    item.likePromo(senderId);
     break;
 
     case 'MY_SHOPPING_LIST':

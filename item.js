@@ -310,27 +310,27 @@ var checkProductsOnPromo = (senderId) => {
         });
       }
     });
-
-    var likePromo = (senderId) =>{
-      // Show the like message with a quick reply
-    let messageData = {
-      "text":"Did You Like This? ",
-    "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"👍🏽",
-        "payload":"LIKE_PROMO"
-      },
-      {
-        "content_type":"text",
-        "title":"👎",
-        "payload":"DISLIKE_PROMO"
-      }
-    ]
-    }
-sendMessage(senderId, messageData);
-    };
 }
+
+var likePromo = (senderId) =>{
+  // Show the like message with a quick reply
+let messageData = {
+  "text":"Did You Like This? ",
+  "quick_replies":[
+    {
+      "content_type":"text",
+      "title":"👍🏽",
+      "payload":"LIKE_PROMO"
+    },
+    {
+      "content_type":"text",
+      "title":"👎",
+      "payload":"DISLIKE_PROMO"
+    }
+  ]
+}
+sendMessage(senderId, messageData);
+};
 module.exports = {
     sendMessage,
     allProductCategory,
