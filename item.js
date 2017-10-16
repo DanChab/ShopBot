@@ -283,31 +283,35 @@ var checkProductsOnPromo = (senderId) => {
           var description = promoDetails.description;
 
            // Adding item to the elements array
-           elements.push({
-            "title": description,
-            "subtitle":  `From ${dateFrom} to ${dateTo}`,
-            "image_url": promoImage,
-            "buttons": [
-              {"type": "postback",
-              "title": "Order",
-              "payload": "ORDER-"+itemId
-            },
-            {
-              "type": "postback",
-              "title": "Add To Shopping List",
-              "payload": "ADD_TO_LIST-"+itemId
-            }
-            ]
-          });
+          //  elements.push({
+          //   "title": description,
+          //   "subtitle":  `From ${dateFrom} to ${dateTo}`,
+          //   "image_url": promoImage,
+          //   "buttons": [
+          //     {"type": "postback",
+          //     "title": "Order",
+          //     "payload": "ORDER-"+itemId
+          //   },
+          //   {
+          //     "type": "postback",
+          //     "title": "Add To Shopping List",
+          //     "payload": "ADD_TO_LIST-"+itemId
+          //   }
+          //   ]
+          // });
           var messageData = {
-            "attachment":{
-              "type": "template",
-              "payload": {
-               // "sharable":true,
-                "template_type": "generic",
-                elements
-          }
-        }
+            "recipient":{
+              "id":senderId
+            },
+            "message":{
+              "attachment":{
+                "type":"video",
+                "payload":{
+                  "url":promoImage
+                }
+              }
+            }
+          
       };
         sendMessage(senderId, messageData);
         });
