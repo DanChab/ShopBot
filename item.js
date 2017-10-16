@@ -301,8 +301,9 @@ var checkProductsOnPromo = (senderId) => {
           });
           var messageData = {
             "attachment":{
-              "type": "video",
+              "type": "template",
               "payload": {
+               // "sharable":true,
                 "template_type": "generic",
                 elements
           }
