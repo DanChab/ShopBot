@@ -276,6 +276,7 @@ var checkProductsOnPromo = (senderId) => {
         var arrayObj = JSON.parse(body);
         console.log(JSON.stringify(arrayObj, undefined,2));
         arrayObj.forEach((promoDetails) => {
+          var itemId = promoDetails._id;
           var dateFrom = promoDetails.dateFrom;
           var dateTo = promoDetails.dateTo;
           var promoImage = promoDetails.image_url;
