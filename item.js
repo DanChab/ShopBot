@@ -275,16 +275,16 @@ var checkProductsOnPromo = (senderId) => {
       if(!error && response.statusCode == 200){
         var arrayObj = JSON.parse(body);
         arrayObj.forEach((promoDetails) => {
-          var StartDate = promoDetails.StartDate;
-          var EndDate = promoDetails.EndDate;
+          var dateFrom = promoDetails.dateFrom;
+          var dateTo = promoDetails.dateTo;
           var PromoImage = promoDetails.image_url;
-          var msg = promoDetails.msg;
+          var description = promoDetails.description;
 
            // Adding item to the elements array
            elements.push({
-            "title": `From ${StartDate} to ${EndDate}`,
-            "subtitle":  msg,
-            "image_url": PromoImage,
+            "title": `From ${dateFrom} to ${dateTo}`,
+            "subtitle":  description,
+            "image_url": imageUrl
             // "buttons": [{
             //   "type": "postback",
             //   "title": "Order",
