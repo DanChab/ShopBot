@@ -303,7 +303,6 @@ var checkProductsOnPromo = (senderId) => {
             "attachment":{
               "type": "video",
               "payload": {
-                "sharable":true,
                 "template_type": "generic",
                 elements
           }
