@@ -274,6 +274,7 @@ var checkProductsOnPromo = (senderId) => {
     request("https://lumpus-backend.herokuapp.com/api/shoprite/getProductsPromo/promo", (error, response, body) => {
       if(!error && response.statusCode == 200){
         var arrayObj = JSON.parse(body);
+        console.log(JSON.stringify(arrayObj, undefined,2));
         arrayObj.forEach((promoDetails) => {
           var dateFrom = promoDetails.dateFrom;
           var dateTo = promoDetails.dateTo;
