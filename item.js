@@ -25,7 +25,7 @@ var checkProducts = (senderId) => {
         let prodCtgArray = JSON.parse(body);
         console.log(prodCtgArray);
         // Looping through
-        prodCtgArray.forEach(function(category){
+        prodCtgArray.forEach((category) => {
           let idCtg = category._id;
           let nameCtg = category.cathegory;
           // Adding item to the elements array
@@ -178,7 +178,7 @@ var addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
 
     }
 
-    var checkItemList = (senderId) => {
+var checkItemList = (senderId) => {
       var listItem = "";
       var total = 0;
       
@@ -243,7 +243,7 @@ var addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
       });
     }
 
-    var deleteList = (senderId) => {
+var deleteList = (senderId) => {
       // request("https://rafikibot-api.herokuapp.com/api/products/shoppingListDel="+senderId, function(error, response, body){
       //   if (!error && response.statusCode == 200) {
       //     console.log("DELETED SUCCESSFUL");
@@ -267,6 +267,66 @@ var addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
     
     });
     }
+
+var checkProductsOnPromo = (senderId) => {
+    var element = [];
+
+    request("", (error, response, body) => {
+      if(!error && response.statusCode == 200){
+        var arrayObj = JSON.parse(body);
+        arrayObj.forEach((promoDetails) => {
+          var StartDate = promoDetails.StartDate;
+          var EndDate = promoDetails.EndDate;
+          var PromoImage = promoDetails.image_url;
+          var msg = promoDetails.msg;
+
+           // Adding item to the elements array
+           elements.push({
+            "title": `From ${StartDate} to ${EndDate}`,
+            "subtitle":  msg,
+            "image_url": PromoImage,
+            // "buttons": [{
+            //   "type": "postback",
+            //   "title": "Order",
+            //   "payload": "ORDER-"+itemId
+            // },
+            // {
+            //   "type": "postback",
+            //   "title": "Add To Shopping List",
+            //   "payload": "ADD_TO_LIST-"+itemId
+            // }]
+          });
+          var messageData = {
+            "attachment":{
+              "type": "template",
+              "payload": {
+                "template_type": "generic",
+                elements
+          }
+        }
+      };
+        sendMessage(senderId, messageData);
+        });
+// Show the like message with a quick reply
+    let messageData = {
+      "text":"Did You Like This? ",
+    "quick_replies":[
+      {
+        "content_type":"text",
+        "title":"👍🏽",
+        "payload":"LIKE_PROMO"
+      },
+      {
+        "content_type":"text",
+        "title":"👎",
+        "payload":"DISLIKE_PROMO"
+      }
+    ]
+    }
+sendMessage(senderId, messageData);
+      }
+    });
+}
 module.exports = {
     sendMessage,
     allProductCategory,

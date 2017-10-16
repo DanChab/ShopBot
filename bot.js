@@ -29,7 +29,7 @@ var processPostback = (event) => {
             var name = bodyObj.first_name;
             greeting = `Hi ${name} !,`;
           }
-          let message = `${greeting} I'm the shopRite bot, i will keep you up to date with the latest promotion and prices of all products.Go ahaed and type product to check all products prices`;
+          let message = `${greeting} I'm the ShopRite bot, i will keep you up to date with the latest promotion and prices of all products.Go ahaed and type product to check all products prices`;
           item.sendMessage(senderId,{text:message});
       });
     break;
@@ -160,7 +160,7 @@ var processMessage = (event) => {
         // Greating key words
         case 'hi':
         case 'hey':
-        item.sendMessage (senderId, {text:`Hi ${userName}, am the shoprite robot i can show all products prices, just type products or help if you need my help.` });
+        item.sendMessage (senderId, {text:`Hi ${userName},I'm the shopRite bot, i will keep you up to date with the latest promotion and prices of all products.Go ahaed and type product to check all products prices.` });
         break;
         case 'hello':
         case 'helo':
