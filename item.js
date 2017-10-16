@@ -279,7 +279,7 @@ var checkProductsOnPromo = (senderId) => {
           var itemId = promoDetails._id;
           var dateFrom = promoDetails.dateFrom;
           var dateTo = promoDetails.dateTo;
-          var promoImage = promoDetails.image_url;
+          var promoImage = promoDetails.imageUrl;
           var description = promoDetails.description;
 
            // Adding item to the elements array
