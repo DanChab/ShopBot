@@ -331,6 +331,7 @@ module.exports = {
     sendMessage,
     allProductCategory,
     checkProducts,
+    checkProductsOnPromo,
     confirmAddToList,
     askQtyItem,
     addToList,

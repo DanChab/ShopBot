@@ -33,9 +33,13 @@ var processPostback = (event) => {
           item.sendMessage(senderId,{text:message});
       });
     break;
-
+// Postback from the persistente menu
     case 'PRODUCTS':
       item.checkProducts(senderId);
+    break;
+
+    case 'PRODUCT_ON_PROMO':
+    item.checkProductsOnPromo(senderId);
     break;
 
     case 'MY_SHOPPING_LIST':
