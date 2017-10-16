@@ -278,14 +278,14 @@ var checkProductsOnPromo = (senderId) => {
         arrayObj.forEach((promoDetails) => {
           var dateFrom = promoDetails.dateFrom;
           var dateTo = promoDetails.dateTo;
-          var PromoImage = promoDetails.image_url;
+          var promoImage = promoDetails.image_url;
           var description = promoDetails.description;
 
            // Adding item to the elements array
            elements.push({
             "title": `From ${dateFrom} to ${dateTo}`,
             "subtitle":  description,
-            "image_url": imageUrl
+            "image_url": promoImage
             // "buttons": [{
             //   "type": "postback",
             //   "title": "Order",
