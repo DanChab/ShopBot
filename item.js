@@ -295,7 +295,6 @@ var checkProductsOnPromo = (senderId) => {
         
         });
       }
-      likePromo(senderId);
     });
 }
 
@@ -318,15 +317,20 @@ let messageData = {
 }
 sendMessage(senderId, messageData);
 };
+
+var doYouLikeThis = async (senderId) =>{
+  var showPromo = await (checkProductsOnPromo(senderId));
+  var askForLike = await (likePromo(showPromo));
+  return askForLike;
+};
 module.exports = {
     sendMessage,
     allProductCategory,
     checkProducts,
-    checkProductsOnPromo,
     confirmAddToList,
     askQtyItem,
     addToList,
     checkItemList,
     deleteList ,
-    likePromo
+    doYouLikeThis
   }

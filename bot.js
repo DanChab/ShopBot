@@ -39,10 +39,7 @@ var processPostback = (event) => {
     break;
 
     case 'PRODUCT_ON_PROMO':
-    item.checkProductsOnPromo(senderId);
-    // Ask the user if she like the promo
-    // item.sendMessage(senderId, {text:'Did you like this?'});
-    // item.likePromo(senderId);
+      item.doYouLikeThis(senderId);
     break;
 
     case 'MY_SHOPPING_LIST':
