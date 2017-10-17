@@ -318,7 +318,7 @@ let messageData = {
 sendMessage(senderId, messageData);
 };
 
-var doYouLikeThis = async (senderId) =>{
+var doYouLikeThis = async () =>{
   var showPromo = await (checkProductsOnPromo(senderId));
   var askForLike = await (likePromo(showPromo));
   return askForLike;
