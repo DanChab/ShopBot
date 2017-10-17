@@ -294,7 +294,7 @@ var checkProductsOnPromo = (senderId) => {
         // Ask user if they like the promo
         
         });
-        likePromo(senderId);
+        //likePromo(senderId);
       }
     });
 }
@@ -302,7 +302,7 @@ var checkProductsOnPromo = (senderId) => {
 var likePromo = (senderId) =>{
   // Show the like message with a quick reply
 let messageData = {
-  "text":"Did You Like This? ",
+  "text":"Tell me...",
   "quick_replies":[
     {
       "content_type":"text",
