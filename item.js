@@ -318,11 +318,11 @@ let messageData = {
 sendMessage(senderId, messageData);
 };
 
-var doYouLikeThis = async () =>{
+var doYouLikeThis = async ((senderId) =>{
   var showPromo = await (checkProductsOnPromo(senderId));
   var askForLike = await (likePromo(showPromo));
   return askForLike;
-};
+});
 module.exports = {
     sendMessage,
     allProductCategory,
