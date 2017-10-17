@@ -292,8 +292,9 @@ var checkProductsOnPromo = (senderId) => {
       };
         sendMessage(senderId, messageData);
         // Ask user if they like the promo
-        likePromo(senderId)
+        
         });
+        likePromo(senderId);
       }
     });
 }
