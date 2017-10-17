@@ -282,23 +282,6 @@ var checkProductsOnPromo = (senderId) => {
           var promoImage = promoDetails.imageUrl;
           var description = promoDetails.description;
 
-           // Adding item to the elements array
-          //  elements.push({
-          //   "title": description,
-          //   "subtitle":  `From ${dateFrom} to ${dateTo}`,
-          //   "image_url": promoImage,
-          //   "buttons": [
-          //     {"type": "postback",
-          //     "title": "Order",
-          //     "payload": "ORDER-"+itemId
-          //   },
-          //   {
-          //     "type": "postback",
-          //     "title": "Add To Shopping List",
-          //     "payload": "ADD_TO_LIST-"+itemId
-          //   }
-          //   ]
-          // });
           var messageData = {
               "attachment":{
                 "type":"video",
@@ -308,6 +291,8 @@ var checkProductsOnPromo = (senderId) => {
               }
       };
         sendMessage(senderId, messageData);
+        // Ask user if they like the promo
+        likePromo(senderId)
         });
       }
     });
