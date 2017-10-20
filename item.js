@@ -326,6 +326,5 @@ module.exports = {
     askQtyItem,
     addToList,
     checkItemList,
-    deleteList ,
-    doYouLikeThis
+    deleteList 
   }
