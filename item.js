@@ -295,8 +295,11 @@ const getPromoContent = async (senderId) => {
             return sendMessage(senderId, {text:'HOoops someting went wrong please try later...'});
           }
         }).then(getPromoLikes(senderId));
-    const getPromoLikes = (senderId) =>{
+    
+};
 
+const getPromoLikes = (senderId) =>{
+  // Show the like message with a quick reply
     let messageData = {
       "text":"Tell me...",
       "quick_replies":[
@@ -314,28 +317,6 @@ const getPromoContent = async (senderId) => {
     }
     return sendMessage(senderId, messageData);
     };
-    getPromoLikes(senderId);
-};
-
-// const getPromoLikes = (senderId) =>{
-//   // Show the like message with a quick reply
-// let messageData = {
-//   "text":"Tell me...",
-//   "quick_replies":[
-//     {
-//       "content_type":"text",
-//       "title":"👍🏽",
-//       "payload":"LIKE_PROMO"
-//     },
-//     {
-//       "content_type":"text",
-//       "title":"👎",
-//       "payload":"DISLIKE_PROMO"
-//     }
-//   ]
-// }
-// return sendMessage(senderId, messageData);
-// };
 
 const checkProductsOnPromo = async (senderId) => {
   const promoContent = await getPromoContent(senderId);
