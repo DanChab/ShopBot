@@ -39,8 +39,9 @@ var processPostback = (event) => {
     break;
 
     case 'PRODUCT_ON_PROMO':
-      let text = 'Gimme a sec...'
-      item.checkProductsOnPromo(senderId, text);
+      item.sendMessage(senderId,{text:'Wait a sec...'});
+      item.getPromoContent(senderId);
+      item.getPromoLikes(senderId);
     break;
 
     case 'MY_SHOPPING_LIST':
