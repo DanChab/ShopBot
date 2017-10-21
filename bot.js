@@ -44,6 +44,16 @@ var processPostback = (event) => {
       // item.getPromoLikes(senderId);
     break;
 
+    case 'NOTIFICATION_ON' :
+      const notificationStatus = 'NOTIFICATION_ON';
+      notification(senderId, notificationStatus);
+    break;
+
+    case 'NOTIFICATION_OFF' :
+      const notificationStatus = 'NOTIFICATION_OFF';
+      notification(senderId, notificationStatus);
+    break;
+
     case 'MY_SHOPPING_LIST':
       item.checkItemList(senderId);
     break;

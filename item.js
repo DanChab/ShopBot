@@ -359,6 +359,7 @@ module.exports = {
     checkItemList,
     deleteList,
     getPromoContent,
-    getPromoLikes
+    getPromoLikes,
+    notification
 
   }
