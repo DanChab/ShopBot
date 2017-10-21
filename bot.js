@@ -41,7 +41,7 @@ var processPostback = (event) => {
     case 'PRODUCT_ON_PROMO':
       item.sendMessage(senderId,{text:'Wait a sec...'});
       item.getPromoContent(senderId);
-      item.getPromoLikes(senderId);
+      // item.getPromoLikes(senderId);
     break;
 
     case 'MY_SHOPPING_LIST':

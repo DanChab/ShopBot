@@ -294,8 +294,9 @@ const getPromoContent = (senderId) => {
           } else {
             return sendMessage(senderId, {text:'HOoops someting went wrong please try later...'});
           }
-        });
-    
+        }
+      );
+      getPromoLikes(senderId);
 };
 
 const getPromoLikes = (senderId) =>{
