@@ -267,7 +267,7 @@ const deleteList = (senderId) => {
     });
     }
 
-const getPromoContent = async (senderId) => {
+const getPromoContent = (senderId) => {
     var elements = [];
 
     request("https://lumpus-backend.herokuapp.com/api/shoprite/getProductsPromo/promo", (error, response, body) => {
@@ -301,7 +301,7 @@ const getPromoContent = async (senderId) => {
 const getPromoLikes = (senderId) =>{
   // Show the like message with a quick reply
     let messageData = {
-      "text":"Tell me...",
+      "text":" ",
       "quick_replies":[
         {
           "content_type":"text",
@@ -320,6 +320,7 @@ const getPromoLikes = (senderId) =>{
 
 const checkProductsOnPromo = async (senderId) => {
   const promoContent = await getPromoContent(senderId);
+  const sendMsg = await sendMessage(senderId, {text:'Gimme a sec...'});
   const promoLikes = await getPromoLikes(senderId);
   console.log (`PromoContent:\n ${promoContent}  PromoLikes: \n ${promoLikes}`);
 };
