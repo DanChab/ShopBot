@@ -39,7 +39,8 @@ var processPostback = (event) => {
     break;
 
     case 'PRODUCT_ON_PROMO':
-      item.checkProductsOnPromo(senderId);
+      let text = 'Gimme a sec...'
+      item.checkProductsOnPromo(senderId,);
     break;
 
     case 'MY_SHOPPING_LIST':
