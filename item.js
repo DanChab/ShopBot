@@ -160,7 +160,7 @@ const addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
     },
     json:true
 
-    }, function(error, response, body){
+    }, (error, response, body) =>{
     if (error) throw error;
     if (!error && response.statusCode == 200){
         sendMessage(senderId, {text: `Added To Shopping List...😊`});
@@ -296,7 +296,7 @@ const getPromoContent = (senderId) => {
           }
         }
       );
-      getPromoLikes(senderId);
+     // getPromoLikes(senderId);
 };
 
 const getPromoLikes = (senderId) =>{
@@ -328,6 +328,26 @@ const getPromoLikes = (senderId) =>{
 //   console.log('Running promoLikes');
 //   console.log (`PromoContent:\n ${promoContent}  PromoLikes: \n ${promoLikes}`);
 // };
+
+var notification = (senderId, notificationStatus) => {
+  request({
+    url:'http:notificaton',
+    method:'POST',
+    body:{
+      notificationStatus: notificationStatus
+    }
+  },(error, body, response) =>{
+    if (!error && response.statusCode == 200){
+      if (notificationStatus == 'NOTIFICATION_ON'){
+        return sendMessage(senderId, {text:'Your notification has been turn On, you now be receiving notions for promotion and others..'});
+       }if (notificationStatus == 'NOTIFICATION_OFF'){
+        return sendMessage(senderId, {text:'Your notification has been turn Off, but if you want to check for promotion and others announcemenets, you can check it on product promotion menu.'});
+       }
+    }else {
+      sendMessage(senderId, {text:'Hooops someting went wrong, please try again later'})
+    }
+  });
+}
 
 module.exports = {
     sendMessage,
