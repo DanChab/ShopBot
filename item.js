@@ -292,9 +292,9 @@ const getPromoContent = async (senderId) => {
           return sendMessage(senderId, messageData);
             });
           } else {
-            sendMessage(senderId, {text:'HOoops someting went wrong please try later...'});
+            return sendMessage(senderId, {text:'HOoops someting went wrong please try later...'});
           }
-        });
+        }).then(getPromoLikes(senderId));
     const getPromoLikes = (senderId) =>{
 
     let messageData = {
