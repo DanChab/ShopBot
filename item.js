@@ -2,7 +2,7 @@ const request = require('request');
 var jf = require('./utils/jsonfile.js');
 
 // Sending message to user
-var sendMessage = (recipientId, message) => {
+const sendMessage = (recipientId, message) => {
   request({
     url:"https://graph.facebook.com/v2.6/me/messages",
     qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
@@ -18,7 +18,7 @@ var sendMessage = (recipientId, message) => {
   });
 }
 
-var checkProducts = (senderId) => {
+const checkProducts = (senderId) => {
     var elements = [];
        request("https://lumpus-backend.herokuapp.com/api/shoprite/prodCategory", (error, response, body) =>{
       if (!error && response.statusCode == 200) {
@@ -45,7 +45,7 @@ var checkProducts = (senderId) => {
       }
     });
   }
-var allProductCategory = (senderId, ctgName) => {
+const allProductCategory = (senderId, ctgName) => {
     var elements = [];
     var ctgName = ctgName.toLowerCase().trim();
 
@@ -95,7 +95,7 @@ var allProductCategory = (senderId, ctgName) => {
       
     });
   };
-var confirmAddToList = (senderId, itemId) => {
+const confirmAddToList = (senderId, itemId) => {
     // First get item's details 
     request(`https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList/itemDetails=${itemId}`, (error, response, body) => {
       if (!error && response.statusCode == 200) {
@@ -129,7 +129,7 @@ var confirmAddToList = (senderId, itemId) => {
       });
     };
       
-var askQtyItem = (senderId, arg2, arg3, arg4) => {
+const askQtyItem = (senderId, arg2, arg3, arg4) => {
   let messageData = {
     "text":`How many do you want?`,
     "quick_replies":[
@@ -147,7 +147,7 @@ var askQtyItem = (senderId, arg2, arg3, arg4) => {
   sendMessage(senderId, messageData);
   };
 
-var addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
+const addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
     request({
     url: "https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList",
     method: "POST",
@@ -178,7 +178,7 @@ var addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
 
     }
 
-var checkItemList = (senderId) => {
+const checkItemList = (senderId) => {
       var listItem = "";
       var total = 0;
       
@@ -243,7 +243,7 @@ var checkItemList = (senderId) => {
       });
     }
 
-var deleteList = (senderId) => {
+const deleteList = (senderId) => {
       // request("https://rafikibot-api.herokuapp.com/api/products/shoppingListDel="+senderId, function(error, response, body){
       //   if (!error && response.statusCode == 200) {
       //     console.log("DELETED SUCCESSFUL");
@@ -256,7 +256,7 @@ var deleteList = (senderId) => {
       body: { senderId: senderId },
       json:true
     
-    }, function(error, response, body){
+    }, (error, response, body) =>{
       if (error) throw error;
       if (!error && response.statusCode == 200){
            sendMessage(senderId, {text: " List deleted!"})
@@ -268,7 +268,7 @@ var deleteList = (senderId) => {
     });
     }
 
-var checkProductsOnPromo = (senderId) => {
+const getPromoContent = (senderId) => {
     var elements = [];
 
     request("https://lumpus-backend.herokuapp.com/api/shoprite/getProductsPromo/promo", (error, response, body) => {
@@ -290,15 +290,13 @@ var checkProductsOnPromo = (senderId) => {
                 }
               }
       };
-        sendMessage(senderId, messageData);
-        // Ask user if they like the promo
-        
+       return sendMessage(senderId, messageData);
         });
       }
     });
-}
+};
 
-var likePromo = (senderId) =>{
+const getPromoLikes = (senderId) =>{
   // Show the like message with a quick reply
 let messageData = {
   "text":"Tell me...",
@@ -315,7 +313,13 @@ let messageData = {
     }
   ]
 }
-sendMessage(senderId, messageData);
+return sendMessage(senderId, messageData);
+};
+
+const checkProductsOnPromo = async (senderId) => {
+  const promoContent = await getPromoContent(senderId);
+  const promoLikes = await getPromoLikes(senderId);
+  console.log (`PromoContent:\n ${promoContent}  PromoLikes: \n ${promoLikes}`);
 };
 
 module.exports = {
@@ -326,5 +330,6 @@ module.exports = {
     askQtyItem,
     addToList,
     checkItemList,
-    deleteList 
+    deleteList,
+    checkProductsOnPromo
   }
