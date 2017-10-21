@@ -295,6 +295,7 @@ const getPromoContent = async (senderId) => {
             sendMessage(senderId, {text:'HOoops someting went wrong please try later...'});
           }
         });
+    const getPromoLikes = (senderId) =>{
 
     let messageData = {
       "text":"Tell me...",
@@ -312,7 +313,8 @@ const getPromoContent = async (senderId) => {
       ]
     }
     return sendMessage(senderId, messageData);
-    
+    };
+    getPromoLikes(senderId);
 };
 
 // const getPromoLikes = (senderId) =>{
