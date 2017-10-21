@@ -352,5 +352,5 @@ module.exports = {
     addToList,
     checkItemList,
     deleteList,
-    checkProductsOnPromo
+    getPromoContent
   }
