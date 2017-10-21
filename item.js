@@ -263,58 +263,79 @@ const deleteList = (senderId) => {
       }else{
         sendMessage (senderId, {text:" 😕 Sorry i could not delete your list, please try later"})
       }
-     
-    
+      
     });
     }
 
-const getPromoContent = (senderId) => {
+const getPromoContent = async (senderId) => {
     var elements = [];
 
-    request("https://lumpus-backend.herokuapp.com/api/shoprite/getProductsPromo/promo", (error, response, body) => {
-      if(!error && response.statusCode == 200){
-        var arrayObj = JSON.parse(body);
-        console.log(JSON.stringify(arrayObj, undefined,2));
-        arrayObj.forEach((promoDetails) => {
-          var itemId = promoDetails._id;
-          var dateFrom = promoDetails.dateFrom;
-          var dateTo = promoDetails.dateTo;
-          var promoImage = promoDetails.imageUrl;
-          var description = promoDetails.description;
+    const requestContent = await request("https://lumpus-backend.herokuapp.com/api/shoprite/getProductsPromo/promo", (error, response, body) => {
+          if(!error && response.statusCode == 200){
+            var arrayObj = JSON.parse(body);
+            console.log(JSON.stringify(arrayObj, undefined,2));
+            arrayObj.forEach((promoDetails) => {
+              var itemId = promoDetails._id;
+              var dateFrom = promoDetails.dateFrom;
+              var dateTo = promoDetails.dateTo;
+              var promoImage = promoDetails.imageUrl;
+              var description = promoDetails.description;
 
-          var messageData = {
-              "attachment":{
-                "type":"video",
-                "payload":{
-                  "url":promoImage
-                }
-              }
-      };
-       return sendMessage(senderId, messageData);
+              var messageData = {
+                  "attachment":{
+                    "type":"video",
+                    "payload":{
+                      "url":promoImage
+                    }
+                  }
+          };
+          return sendMessage(senderId, messageData);
+            });
+          } else {
+            sendMessage(senderId, {text:'HOoops someting went wrong please try later...'});
+          }
         });
-      }
-    });
+    const getPromoLikes = (senderId) =>{
+
+    let messageData = {
+      "text":"Tell me...",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"👍🏽",
+          "payload":"LIKE_PROMO"
+        },
+        {
+          "content_type":"text",
+          "title":"👎",
+          "payload":"DISLIKE_PROMO"
+        }
+      ]
+    }
+    return sendMessage(senderId, messageData);
+    };
+    
 };
 
-const getPromoLikes = (senderId) =>{
-  // Show the like message with a quick reply
-let messageData = {
-  "text":"Tell me...",
-  "quick_replies":[
-    {
-      "content_type":"text",
-      "title":"👍🏽",
-      "payload":"LIKE_PROMO"
-    },
-    {
-      "content_type":"text",
-      "title":"👎",
-      "payload":"DISLIKE_PROMO"
-    }
-  ]
-}
-return sendMessage(senderId, messageData);
-};
+// const getPromoLikes = (senderId) =>{
+//   // Show the like message with a quick reply
+// let messageData = {
+//   "text":"Tell me...",
+//   "quick_replies":[
+//     {
+//       "content_type":"text",
+//       "title":"👍🏽",
+//       "payload":"LIKE_PROMO"
+//     },
+//     {
+//       "content_type":"text",
+//       "title":"👎",
+//       "payload":"DISLIKE_PROMO"
+//     }
+//   ]
+// }
+// return sendMessage(senderId, messageData);
+// };
 
 const checkProductsOnPromo = async (senderId) => {
   const promoContent = await getPromoContent(senderId);
