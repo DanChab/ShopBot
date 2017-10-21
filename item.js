@@ -270,7 +270,7 @@ const deleteList = (senderId) => {
 const getPromoContent = async (senderId) => {
     var elements = [];
 
-    const requestContent = await request("https://lumpus-backend.herokuapp.com/api/shoprite/getProductsPromo/promo", (error, response, body) => {
+    request("https://lumpus-backend.herokuapp.com/api/shoprite/getProductsPromo/promo", (error, response, body) => {
           if(!error && response.statusCode == 200){
             var arrayObj = JSON.parse(body);
             console.log(JSON.stringify(arrayObj, undefined,2));
@@ -294,7 +294,7 @@ const getPromoContent = async (senderId) => {
           } else {
             return sendMessage(senderId, {text:'HOoops someting went wrong please try later...'});
           }
-        }).then(getPromoLikes(senderId));
+        });
     
 };
 
@@ -333,5 +333,5 @@ module.exports = {
     addToList,
     checkItemList,
     deleteList,
-    getPromoContent
+    checkProductsOnPromo
   }
