@@ -320,8 +320,11 @@ const getPromoLikes = (senderId) =>{
 
 const checkProductsOnPromo = async (senderId, msgText) => {
   const promoContent = await getPromoContent(senderId);
+    console.log('Running promoContent');
   const sendMsg = await sendMessage(senderId, msgText);
+  console.log('Running sendMsg');
   const promoLikes = await getPromoLikes(senderId);
+  console.log('Running promoLikes');
   console.log (`PromoContent:\n ${promoContent}  PromoLikes: \n ${promoLikes}`);
 };
 
