@@ -44,7 +44,7 @@ var processPostback = (event) => {
       // item.getPromoLikes(senderId);
     break;
 
-    case 'NOTIFICATION_ON' :
+    case 'NOTIFICATION_ON':
       const notificationStatus = 'NOTIFICATION_ON';
       notification(senderId, notificationStatus);
     break;

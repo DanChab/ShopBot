@@ -20,7 +20,7 @@ const sendMessage = (recipientId, message) => {
 
 const checkProducts = (senderId) => {
     var elements = [];
-       request("https://lumpus-backend.herokuapp.com/api/shoprite/prodCategory", (error, response, body) =>{
+       request("https://lumpus-backend.herokuapp.com/api/shopBot/prodCategory", (error, response, body) =>{
       if (!error && response.statusCode == 200) {
         let prodCtgArray = JSON.parse(body);
         console.log(prodCtgArray);
@@ -49,7 +49,7 @@ const allProductCategory = (senderId, ctgName) => {
     var elements = [];
     var ctgName = ctgName.toLowerCase().trim();
 
-    request(`https://lumpus-backend.herokuapp.com/api/shoprite/prodCategory/ctg_name=${ctgName}`, (error,response, body) => {
+    request(`https://lumpus-backend.herokuapp.com/api/shopBot/prodCategory/ctg_name=${ctgName}`, (error,response, body) => {
       
       if (!error && response.statusCode == 200){
         var itemsArray = JSON.parse(body);
@@ -97,7 +97,7 @@ const allProductCategory = (senderId, ctgName) => {
   };
 const confirmAddToList = (senderId, itemId) => {
     // First get item's details 
-    request(`https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList/itemDetails=${itemId}`, (error, response, body) => {
+    request(`https://lumpus-backend.herokuapp.com/api/shopBot/shoppingList/itemDetails=${itemId}`, (error, response, body) => {
       if (!error && response.statusCode == 200) {
         let itemArray = JSON.parse(body);
         console.log(itemArray);
@@ -149,7 +149,7 @@ const askQtyItem = (senderId, arg2, arg3, arg4) => {
 
 const addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
     request({
-    url: "https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList",
+    url: "https://lumpus-backend.herokuapp.com/api/shopBot/shoppingList",
     method: "POST",
     body: {
           userId : senderId,
@@ -183,7 +183,7 @@ const checkItemList = (senderId) => {
       var total = 0;
       
       // Check if the user has a list
-      request("https://lumpus-backend.herokuapp.com/api/shoprite/shoppingList/listId="+senderId, function(error, response, body){
+      request("https://lumpus-backend.herokuapp.com/api/shopBot/shoppingList/listId="+senderId, function(error, response, body){
         if (!error && response.statusCode == 200){
             var listArray = JSON.parse(body);
             if (listArray.length != 0) {
@@ -251,7 +251,7 @@ const deleteList = (senderId) => {
       // });
     
       request({
-      url: "https://shoprite-bot-demo.herokuapp.com/api/shoprite/shoppingList",
+      url: "https://rafikibot-api.herokuapp.com/api/shopBot/shoppingList",
       method: "DELETE",
       body: { senderId: senderId },
       json:true
@@ -270,7 +270,7 @@ const deleteList = (senderId) => {
 const getPromoContent = (senderId) => {
     var elements = [];
 
-    request("https://lumpus-backend.herokuapp.com/api/shoprite/getProductsPromo/promo", (error, response, body) => {
+    request("https://lumpus-backend.herokuapp.com/api/shopBot/getProductsPromo/promo", (error, response, body) => {
           if(!error && response.statusCode == 200){
             var arrayObj = JSON.parse(body);
             console.log(JSON.stringify(arrayObj, undefined,2));
