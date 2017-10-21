@@ -318,9 +318,9 @@ const getPromoLikes = (senderId) =>{
     return sendMessage(senderId, messageData);
     };
 
-const checkProductsOnPromo = async (senderId) => {
+const checkProductsOnPromo = async (senderId, msgText) => {
   const promoContent = await getPromoContent(senderId);
-  const sendMsg = await sendMessage(senderId, {text:'Gimme a sec...'});
+  const sendMsg = await sendMessage(senderId, msgText);
   const promoLikes = await getPromoLikes(senderId);
   console.log (`PromoContent:\n ${promoContent}  PromoLikes: \n ${promoLikes}`);
 };
