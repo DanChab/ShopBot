@@ -301,7 +301,7 @@ const getPromoContent = (senderId) => {
 const getPromoLikes = (senderId) =>{
   // Show the like message with a quick reply
     let messageData = {
-      "text":" ",
+      "text":"Do you like it? ",
       "quick_replies":[
         {
           "content_type":"text",
