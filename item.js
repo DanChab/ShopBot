@@ -272,25 +272,31 @@ const getPromoContent = (senderId) => {
 
     request("https://lumpus-backend.herokuapp.com/api/shopBot/getProductsPromo/promo", (error, response, body) => {
           if(!error && response.statusCode == 200){
-            var arrayObj = JSON.parse(body);
-            console.log(JSON.stringify(arrayObj, undefined,2));
-            arrayObj.forEach((promoDetails) => {
-              var itemId = promoDetails._id;
-              var dateFrom = promoDetails.dateFrom;
-              var dateTo = promoDetails.dateTo;
-              var promoImage = promoDetails.imageUrl;
-              var description = promoDetails.description;
 
-              var messageData = {
-                  "attachment":{
-                    "type":"video",
-                    "payload":{
-                      "url":promoImage
+            var promoData = JSON.parse(body);
+            if(!_.isElement(promoData)) {
+              var arrayObj = JSON.parse(body);
+              console.log(JSON.stringify(arrayObj, undefined,2));
+              arrayObj.forEach((promoDetails) => {
+                var itemId = promoDetails._id;
+                var dateFrom = promoDetails.dateFrom;
+                var dateTo = promoDetails.dateTo;
+                var promoImage = promoDetails.imageUrl;
+                var description = promoDetails.description;
+  
+                var messageData = {
+                    "attachment":{
+                      "type":"video",
+                      "payload":{
+                        "url":promoImage
+                      }
                     }
-                  }
-          };
-          return sendMessage(senderId, messageData);
-            });
+            };
+            return sendMessage(senderId, messageData);
+              });
+            } else{
+              sendMessage(senderId, {text:'No promotion yet, I will let know when we have...😊'});
+            };         
           } else {
             return sendMessage(senderId, {text:'HOoops someting went wrong please try later...'});
           }

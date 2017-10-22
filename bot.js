@@ -183,6 +183,12 @@ var processMessage = (event) => {
         case 'helo':
         item.sendMessage (senderId, {text:`Hello ${userName}, am a robot i can show all products prices, just type products or help if you need my help.`});
         break;
+        case 'ok':
+        case 'alright':
+        case 'okay':
+        case 'cool':
+        item.sendMessage(senderId, {text:'Cool...😎'});
+        break;
         case 'how are you?':
         case 'how are you':
         item.sendMessage (senderId, {text:'Am fine, thanks for asking'});
