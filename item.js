@@ -330,6 +330,8 @@ const getPromoLikes = (senderId) =>{
 // };
 
 var notification = (senderId, notificationStatus) => {
+
+  console.log(`Data to post\n senderId: ${senderId} \n noticationStatus: ${notificationStatus}`);
   request({
     url:'https://lumpus-backend.herokuapp.com/api/shopBot/users/userNotifStatus',
     method:'POST',
