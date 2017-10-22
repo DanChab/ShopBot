@@ -9,7 +9,7 @@ var processPostback = (event) => {
   let senderId = event.sender.id;
   let payload = event.postback.payload;
 
-  var notificationStatus = '';
+  var notificationStatus = true;
 
   switch(payload){
     case 'GET_STARTED_PAYLOAD':
@@ -47,12 +47,11 @@ var processPostback = (event) => {
     break;
 
     case 'NOTIFICATION_ON':
-       notificationStatus = 'NOTIFICATION_ON';
       item.notification(senderId, notificationStatus);
     break;
 
     case 'NOTIFICATION_OFF':
-       notificationStatus = 'NOTIFICATION_OFF';
+       notificationStatus = false;
       item.notification(senderId, notificationStatus);
     break;
 
