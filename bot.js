@@ -45,12 +45,12 @@ var processPostback = (event) => {
     break;
 
     case 'NOTIFICATION_ON':
-      const notificationStatus = 'NOTIFICATION_ON';
+      let notificationStatus = 'NOTIFICATION_ON';
       notification(senderId, notificationStatus);
     break;
 
     case 'NOTIFICATION_OFF':
-      const notificationStatus = 'NOTIFICATION_OFF';
+      let notificationStatus = 'NOTIFICATION_OFF';
       notification(senderId, notificationStatus);
     break;
 
