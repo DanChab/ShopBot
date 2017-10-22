@@ -335,7 +335,8 @@ var notification = (senderId, notificationStatus) => {
     method:'POST',
     body:{
       notificationStatus: notificationStatus
-    }
+    },
+    json:true
   },(error, body, response) =>{
     if (!error && response.statusCode == 200){
       if (notificationStatus == 'NOTIFICATION_ON'){
