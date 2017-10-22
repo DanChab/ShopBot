@@ -343,9 +343,9 @@ var notification = (senderId, notificationStatus) => {
   },(error, response, body) =>{
     if (!error && response.statusCode == 200){
       if (notificationStatus){
-        return sendMessage(senderId, {text:'Your notification has been turn On, you now be receiving notions for promotion and others..'});
+        return sendMessage(senderId, {text:'Notification turned On,you will be receiving promotion alerts and other announcements.'});
        }if (!notificationStatus){
-        return sendMessage(senderId, {text:'Your notification has been turn Off, but if you want to check for promotion and others announcemenets, you can check it on product promotion menu.'});
+        return sendMessage(senderId, {text:'Notification turn Off, if you want to check for promotion and other announcemenets, you can check it on products promotion menu.'});
        }
     }else {
       sendMessage(senderId, {text:'Hooops sorry someting went wrong, please try again later'})
