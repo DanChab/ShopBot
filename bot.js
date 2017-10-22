@@ -48,7 +48,7 @@ var processPostback = (event) => {
 
     case 'NOTIFICATION_ON':
        notificationStatus = 'NOTIFICATION_ON';
-      notification(senderId, notificationStatus);
+      item.notification(senderId, notificationStatus);
     break;
 
     case 'NOTIFICATION_OFF':
