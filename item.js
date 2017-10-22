@@ -334,7 +334,8 @@ var notification = (senderId, notificationStatus) => {
     url:'https://lumpus-backend.herokuapp.com/api/shopBot/users/userNotifStatus',
     method:'POST',
     body:{
-      notificationStatus: notificationStatus
+      notificationStatus: notificationStatus,
+      senderId: senderId
     },
     json:true
   },(error, body, response) =>{
