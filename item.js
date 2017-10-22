@@ -340,7 +340,7 @@ var notification = (senderId, notificationStatus) => {
       senderId: senderId
     },
     json:true
-  },(error, body, response) =>{
+  },(error, response, body) =>{
     if (!error && response.statusCode == 200){
       if (notificationStatus){
         return sendMessage(senderId, {text:'Your notification has been turn On, you now be receiving notions for promotion and others..'});
