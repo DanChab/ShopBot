@@ -53,7 +53,7 @@ var processPostback = (event) => {
 
     case 'NOTIFICATION_OFF':
        notificationStatus = 'NOTIFICATION_OFF';
-      notification(senderId, notificationStatus);
+      item.notification(senderId, notificationStatus);
     break;
 
     case 'MY_SHOPPING_LIST':
