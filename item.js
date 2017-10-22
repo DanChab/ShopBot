@@ -344,7 +344,7 @@ var notification = (senderId, notificationStatus) => {
         return sendMessage(senderId, {text:'Your notification has been turn Off, but if you want to check for promotion and others announcemenets, you can check it on product promotion menu.'});
        }
     }else {
-      sendMessage(senderId, {text:'Hooops someting went wrong, please try again later'})
+      sendMessage(senderId, {text:'Hooops sorry someting went wrong, please try again later'})
     }
   });
 }

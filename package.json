@@ -9,7 +9,7 @@
     "body-parser": "~1.17.1",
     "express": "~4.15.2",
     "lodash": "^4.17.4",
-    "request": "^2.81.0",
+    "request": "^2.83.0",
     "validator": "^8.2.0"
   },
   "main": "app.js",
@@ -28,5 +28,4 @@
   },
   "homepage": "https://github.com/DanChab/ShopRite#readme",
   "description": ""
-
 }
