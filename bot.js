@@ -9,6 +9,8 @@ var processPostback = (event) => {
   let senderId = event.sender.id;
   let payload = event.postback.payload;
 
+  var notificationStatus = '';
+
   switch(payload){
     case 'GET_STARTED_PAYLOAD':
       // Get user's first name from the User Profile API
@@ -45,12 +47,12 @@ var processPostback = (event) => {
     break;
 
     case 'NOTIFICATION_ON':
-      let notificationStatus = 'NOTIFICATION_ON';
+       notificationStatus = 'NOTIFICATION_ON';
       notification(senderId, notificationStatus);
     break;
 
     case 'NOTIFICATION_OFF':
-      let notificationStatus = 'NOTIFICATION_OFF';
+       notificationStatus = 'NOTIFICATION_OFF';
       notification(senderId, notificationStatus);
     break;
 
