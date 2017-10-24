@@ -172,6 +172,7 @@ var processMessage = (event) => {
           console.log("Error getting user's name: " + error);
         }else {
           let bodyObj = JSON.parse(body);
+          console.log(JSON.stringify(bodyObj, undefined, 2));
           var name = bodyObj.first_name;
           console.log(name)
           var userName = name;
