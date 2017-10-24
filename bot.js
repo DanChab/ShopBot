@@ -10,6 +10,7 @@ var processPostback = (event) => {
   let payload = event.postback.payload;
 
   var notificationStatus = true;
+  var name = ''; // The User Name.
 
   switch(payload){
     case 'GET_STARTED_PAYLOAD':
@@ -28,14 +29,16 @@ var processPostback = (event) => {
             console.log("Error greeting user's name:" + err);
           }else{
             let bodyObj = JSON.parse(body);
-            var name = bodyObj.first_name;
+            name = bodyObj.first_name;
             greeting = `Hi ${name} !,`;
           }
           let message = `${greeting} I'm a bot, i will keep you up to date with the latest promotion and prices of all products.Go ahaed and type product to check all products prices`;
           item.sendMessage(senderId,{text:message});
-      });
-      // Get the user id and name
+
+          // Get the user id and name
       item.getUserDetails(senderId, name);
+      });
+      
     break;
 
 // Postback from the persistente menu
