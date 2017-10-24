@@ -51,12 +51,16 @@ var processPostback = (event) => {
     break;
 
     case 'NOTIFICATION_OFF':
-       notificationStatus = false;
+      notificationStatus = false;
       item.notification(senderId, notificationStatus);
     break;
 
     case 'MY_SHOPPING_LIST':
       item.checkItemList(senderId);
+    break;
+
+    case 'ALL_PRODUCTS':
+      item.checkProducts(senderId);
     break;
 
     default:
