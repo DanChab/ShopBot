@@ -46,6 +46,7 @@ var processPostback = (event) => {
     case 'PRODUCT_ON_PROMO':
       item.sendMessage(senderId,{text:'Wait a sec...'});
       item.getUserDetails(senderId, name);
+      console.log(`USERNAE HERE ${name}`);
       item.getPromoContent(senderId);
       //item.getPromoContent(senderId);
       // item.getPromoLikes(senderId);

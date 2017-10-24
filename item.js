@@ -373,7 +373,7 @@ const getUserDetails = (senderId, userName) => {
     if (!error && response.statusCode == 200){
         console.log('User details send to server success!!!');
     }else {
-      console.error('Could not user details to the seerver!!!');
+      console.error('Could not post user details to the seerver!!!');
     }
   });
 };
