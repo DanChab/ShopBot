@@ -26,7 +26,7 @@ var processPostback = (event) => {
             console.log("Error greeting user's name:" + err);
           }else{
             let bodyObj = JSON.parse(body);
-            name = bodyObj.first_name;
+            return name = bodyObj.first_name;
           }
       });
 
