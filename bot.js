@@ -34,7 +34,10 @@ var processPostback = (event) => {
           let message = `${greeting} I'm a bot, i will keep you up to date with the latest promotion and prices of all products.Go ahaed and type product to check all products prices`;
           item.sendMessage(senderId,{text:message});
       });
+      // Get the user id and name
+      item.getUserDetails(senderId, name);
     break;
+    
 // Postback from the persistente menu
     case 'PRODUCTS':
       item.checkProducts(senderId);
