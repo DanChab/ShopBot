@@ -10,10 +10,11 @@ var processPostback = (event) => {
   let payload = event.postback.payload;
 
   var notificationStatus = true;
-  var name = ''; // The User Name.
 
-  // Get user's first name from the User Profile API
-  // and include it in the Greeting message
+  switch(payload){
+    case 'GET_STARTED_PAYLOAD':
+    // Get user's first name from the User Profile API
+    // and include it in the Greeting message
       request({
         url : 'https://graph.facebook.com/v2.6/' + senderId,
         qs : {
@@ -26,16 +27,14 @@ var processPostback = (event) => {
             console.log("Error greeting user's name:" + err);
           }else{
             let bodyObj = JSON.parse(body);
-            return name = bodyObj.first_name;
-          }
-      });
+            var name = bodyObj.first_name;
 
-  switch(payload){
-    case 'GET_STARTED_PAYLOAD':
-    let message = `Hi ${name} I'm a bot, i will keep you up to date with the latest promotion and prices of all products.Go ahaed and type product to check all products prices`;
-    item.sendMessage(senderId,{text:message});
-     // Get the user id and name
-     item.getUserDetails(senderId, name);
+            let message = `Hi ${name} I'm a bot, i will keep you up to date with the latest promotion and prices of all products.Go ahaed and type product to check all products prices`;
+            item.sendMessage(senderId,{text:message});
+            // Get the user id and name
+            item.getUserDetails(senderId, name);
+          }
+        });
     break;
 
     // Postback from the persistente menu
@@ -45,8 +44,6 @@ var processPostback = (event) => {
 
     case 'PRODUCT_ON_PROMO':
       item.sendMessage(senderId,{text:'Wait a sec...'});
-      item.getUserDetails(senderId, name);
-      console.log(`USERNAE HERE ${name}`);
       item.getPromoContent(senderId);
       //item.getPromoContent(senderId);
       // item.getPromoLikes(senderId);
