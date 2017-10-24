@@ -361,7 +361,7 @@ const notification = (senderId, notificationStatus) => {
 
 const getUserDetails = (senderId, userName) => {
   request({
-    url:'',
+    url:'https://lumpus-backend.herokuapp.com/api/shopBot/users/userInfo',
     body: {
       userId: senderId,
       userName: userName
