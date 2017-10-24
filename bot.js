@@ -136,6 +136,7 @@ var processPostback = (event) => {
 
 var processMessage = (event) => {
   if (!event.message.is_echo) {
+    console.log(JSON.stringify(event,undefined,2));
     let message = event.message;
     let senderId = event.sender.id;
 
