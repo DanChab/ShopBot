@@ -33,6 +33,8 @@ var processPostback = (event) => {
             item.sendMessage(senderId,{text:message});
             // Get the user id and name
             item.getUserDetails(senderId, name);
+            // Set user notification
+            item.notification(senderId, notificationStatus);
           }
         });
     break;
