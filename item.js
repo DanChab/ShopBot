@@ -1,5 +1,6 @@
 const request = require('request');
 var jf = require('./utils/jsonfile.js');
+const _ = require('lodash');
 
 // Sending message to user
 const sendMessage = (recipientId, message) => {
