@@ -335,7 +335,7 @@ const getPromoLikes = (senderId) =>{
 //   console.log (`PromoContent:\n ${promoContent}  PromoLikes: \n ${promoLikes}`);
 // };
 
-var notification = (senderId, notificationStatus) => {
+const notification = (senderId, notificationStatus) => {
 
   console.log(`Data to post\n senderId: ${senderId} \n noticationStatus: ${notificationStatus}`);
   request({
@@ -359,6 +359,24 @@ var notification = (senderId, notificationStatus) => {
   });
 }
 
+const getUserDetails = (senderId, userName) => {
+  request({
+    url:'',
+    body: {
+      userId: senderId,
+      userName: userName
+    },
+    method: 'POST',
+    json: true
+  }, (error, response, body) => {
+    if (!error && response.statusCode == 200){
+        console.log('User details send to server success!!!');
+    }else {
+      console.error('Could not user details to the seerver!!!');
+    }
+  });
+};
+
 module.exports = {
     sendMessage,
     allProductCategory,
@@ -370,5 +388,6 @@ module.exports = {
     deleteList,
     getPromoContent,
     getPromoLikes,
-    notification
+    notification,
+    getUserDetails
   }
