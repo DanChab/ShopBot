@@ -1,6 +1,6 @@
 const request = require('request');
 var jf = require('./utils/jsonfile.js');
-const _ = require('lodash');
+var _ = require('lodash');
 
 // Sending message to user
 const sendMessage = (recipientId, message) => {
@@ -275,7 +275,7 @@ const getPromoContent = (senderId) => {
           if(!error && response.statusCode == 200){
 
             var promoData = JSON.parse(body);
-            if(!_.isElement(promoData)) {
+            if(!_.isEmpty(promoData)) {
               var arrayObj = JSON.parse(body);
               console.log(JSON.stringify(arrayObj, undefined,2));
               arrayObj.forEach((promoDetails) => {
