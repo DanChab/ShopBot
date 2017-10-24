@@ -279,7 +279,7 @@ const getPromoContent = (senderId) => {
               var arrayObj = JSON.parse(body);
               console.log(JSON.stringify(arrayObj, undefined,2));
               arrayObj.forEach((promoDetails) => {
-                var itemId = promoDetails._id;
+                var promoId = promoDetails._id;
                 var dateFrom = promoDetails.dateFrom;
                 var dateTo = promoDetails.dateTo;
                 var promoImage = promoDetails.imageUrl;
@@ -293,7 +293,8 @@ const getPromoContent = (senderId) => {
                       }
                     }
             };
-            return sendMessage(senderId, messageData);
+            sendMessage(senderId, messageData);
+            getWhoCheckedPromo(senderId,promoId);
               });
             } else{
               sendMessage(senderId, {text:'No promotion yet, I will let know when we have...😊'});
@@ -335,6 +336,24 @@ const getPromoLikes = (senderId) =>{
 //   console.log('Running promoLikes');
 //   console.log (`PromoContent:\n ${promoContent}  PromoLikes: \n ${promoLikes}`);
 // };
+
+const getWhoCheckedPromo = (senderId, promoId) => {
+  request ({
+    url: 'https://lumpus-backend.herokuapp.com/api/shopBot/getProductsPromo/promoLogs',
+    method: 'POST',
+    body: {
+      senderId:senderId,
+      promoId: promoId
+    },
+    json:true
+  }, (error, response, body) => {
+    if(!error && response.statusCode == 200){
+      console.log('Data posted to the server SUCCESSFUL');
+    }else {
+      console.error('Could not post data to server ERROR!!');
+    }
+  });
+};
 
 const notification = (senderId, notificationStatus) => {
 
