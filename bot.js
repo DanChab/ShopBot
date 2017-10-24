@@ -37,7 +37,7 @@ var processPostback = (event) => {
       // Get the user id and name
       item.getUserDetails(senderId, name);
     break;
-    
+
 // Postback from the persistente menu
     case 'PRODUCTS':
       item.checkProducts(senderId);
@@ -45,7 +45,8 @@ var processPostback = (event) => {
 
     case 'PRODUCT_ON_PROMO':
       item.sendMessage(senderId,{text:'Wait a sec...'});
-      item.getPromoContent(senderId);
+      item.getUserDetails(senderId, name);
+      //item.getPromoContent(senderId);
       // item.getPromoLikes(senderId);
     break;
 
