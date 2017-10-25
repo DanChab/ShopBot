@@ -34,7 +34,7 @@ var processPostback = (event) => {
             // Get the user id and name
             item.getUserDetails(senderId, name);
             // Set user notification
-            item.notification(senderId, notificationStatus);
+            item.defautSetNotification(senderId, notificationStatus);
           }
         });
     break;

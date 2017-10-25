@@ -427,5 +427,6 @@ module.exports = {
     getPromoContent,
     getPromoLikes,
     notification,
-    getUserDetails
+    getUserDetails,
+    defautSetNotification
   }
