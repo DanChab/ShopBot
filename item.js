@@ -379,6 +379,24 @@ const notification = (senderId, notificationStatus) => {
   });
 }
 
+const defautSetNotification = (senderId, noticationStatus) => {
+    request({
+      url:'https://lumpus-backend.herokuapp.com/api/shopBot/users/userNotifStatus',
+      method: 'POST',
+      body:{
+        senderId:senderId,
+        noticationStatus:noticationStatus
+      },
+      json:true
+    }, (error, response, body) =>{
+      if (!error && response.statusCode == 200){
+        console.log(`user with id:${senderId} has been set with the default notification status of: ${noticationStatus}`);
+      }else {
+        console.error(`user with id:${senderId} could not be set with the default status notification`);
+      }
+    });
+}
+
 const getUserDetails = (senderId, userName) => {
   request({
     url:'https://lumpus-backend.herokuapp.com/api/shopBot/users/userInfo',
