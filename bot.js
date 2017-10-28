@@ -9,10 +9,11 @@ var processPostback = (event) => {
   let senderId = event.sender.id;
   let payload = event.postback.payload;
 
-  var notificationStatus = true;
 
   switch(payload){
     case 'GET_STARTED_PAYLOAD':
+    // Set notication as "true" but defaut 
+    var notificationStatus = true;
     // Get user's first name from the User Profile API
     // and include it in the Greeting message
       request({
