@@ -196,14 +196,14 @@ const checkItemList = (senderId) => {
                 var itemPriceFloat = parseFloat(itemPrice.slice(1));
                 var itemId = listObj._id;
                 
-                total += itemPrice*itemQty;
-
+                total += itemPriceFloat;
+                var generalTotal = total*itemQty;
                 
-                listItem +=`•+ ${itemName} => ${itemPrice}  x${itemQty}\n`;
+                listItem +=`•${itemName} => ${itemPrice}  x${itemQty}\n`;
               });
     
               let messageData = {
-                   "text":"📝 SHOPPING LIST 📝 \n" +"------------------------------------"+"\n"+ listItem + "=============="+"\n"+"Total =k "+total,
+                   "text":"📝 SHOPPING LIST 📝 \n" +"------------------------------------"+"\n"+ listItem + "=============="+"\n"+"Total =k "+generalTotal,
                   "quick_replies":[
                     {
                       "content_type":"text",
