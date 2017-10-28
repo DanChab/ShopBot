@@ -230,7 +230,7 @@ const checkItemList = (senderId) => {
                     {
                       "content_type":"text",
                       "title":"Create Shopping List",
-                      "payload":"CREATE_PIZZA_LIST"
+                      "payload":"CREATE_SHOPPING_LIST"
                     }
                   ]
               }
