@@ -187,6 +187,7 @@ const checkItemList = (senderId) => {
       request("https://lumpus-backend.herokuapp.com/api/shopBot/shoppingList/listId="+senderId, function(error, response, body){
         if (!error && response.statusCode == 200){
             var listArray = JSON.parse(body);
+            console.log(JSON.stringify(listArray, undefined,2));
             if (listArray.length != 0) {
               listArray.forEach(function(listObj){
                 var itemName = listObj.itemName;
@@ -198,7 +199,7 @@ const checkItemList = (senderId) => {
                 total += itemPrice*itemQty;
 
                 
-                listItem +="•"+itemName+"=> " + itemPrice+  itemQty+"\n";
+                listItem +=`•+ ${itemName} => ${itemPrice}  ${itemQty}+\n`;
               });
     
               let messageData = {
@@ -245,14 +246,8 @@ const checkItemList = (senderId) => {
     }
 
 const deleteList = (senderId) => {
-      // request("https://rafikibot-api.herokuapp.com/api/products/shoppingListDel="+senderId, function(error, response, body){
-      //   if (!error && response.statusCode == 200) {
-      //     console.log("DELETED SUCCESSFUL");
-      //   }
-      // });
-    
       request({
-      url: "https://rafikibot-api.herokuapp.com/api/shopBot/shoppingList",
+      url: "https://lumpus-backend.herokuapp.com/api/shopBot/api/shopBot/shoppingList",
       method: "DELETE",
       body: { senderId: senderId },
       json:true
@@ -260,7 +255,7 @@ const deleteList = (senderId) => {
     }, (error, response, body) =>{
       if (error) throw error;
       if (!error && response.statusCode == 200){
-           sendMessage(senderId, {text: " List deleted!"})
+           sendMessage(senderId, {text: " Shopping List deleted!"})
       }else{
         sendMessage (senderId, {text:" 😕 Sorry i could not delete your list, please try later"})
       }
