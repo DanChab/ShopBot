@@ -199,7 +199,7 @@ const checkItemList = (senderId) => {
                 total += itemPrice*itemQty;
 
                 
-                listItem +=`•+ ${itemName} => ${itemPrice}  ${itemQty}+\n`;
+                listItem +=`•+ ${itemName} => ${itemPrice}  x${itemQty}\n`;
               });
     
               let messageData = {
