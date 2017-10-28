@@ -182,6 +182,7 @@ const addToList = (senderId, itemId, itemName, itemPrice, itemQty) => {
 const checkItemList = (senderId) => {
       var listItem = "";
       var total = 0;
+      var generalTotal = 0;
       
       // Check if the user has a list
       request("https://lumpus-backend.herokuapp.com/api/shopBot/shoppingList/listId="+senderId, function(error, response, body){
@@ -197,7 +198,7 @@ const checkItemList = (senderId) => {
                 var itemId = listObj._id;
                 
                 total += itemPriceFloat;
-                var generalTotal = total*itemQty;
+                generalTotal = total*itemQty;
                 
                 listItem +=`•${itemName} => ${itemPrice}  x${itemQty}\n`;
               });
