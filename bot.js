@@ -347,7 +347,7 @@ var processQuickReply = (event) => {
         item.sendMessage(senderId, {text:"You can add more items... "})
         item.checkProducts(senderId);
             break;
-        case "CREATE_PIZZA_LIST":
+        case "CREATE_SHOPPING_LIST":
         item.checkProducts(senderId);
             break;
       /*
