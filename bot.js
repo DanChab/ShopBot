@@ -156,7 +156,7 @@ var processMessage = (event) => {
        //Check if the json file contains an item to edit
       var note = jf.getNote(senderId);
       console.log('Json File here:', note);
-      if(typeof note.senderId !== 'undefined'){
+      if(note.senderId !== 'undefined'){
         console.log("notes...",note);
         var botMsg = _.get(note,'item.botMsg');
         var itemId = _.get(note,'item.itemId');
