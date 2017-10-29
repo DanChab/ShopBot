@@ -102,7 +102,9 @@ var processPostback = (event) => {
   
           item.sendMessage(senderId, messageData);
         break;
-  
+        case 'ADD_ITEM_TO_LIST':
+          item.checkProducts(senderId);
+          break;
         case 'YES_DELETE_LIST':
         item.deleteList(senderId);
             break;
