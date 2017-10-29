@@ -157,17 +157,20 @@ var processMessage = (event) => {
 
        //Check if the json file contains an item to edit
       var note = jf.getNote(senderId);
-      console.log('Json File here:', note);
-      if(note.senderId !== 'undefined'){
-        console.log("notes...",note);
-        var botMsg = _.get(note,'item.botMsg');
-        var itemId = _.get(note,'item.itemId');
-        var itemName = _.get(note,'item.itemName');
-        var itemPrice = _.get(note,'item.itemPrice');
-        console.log(botMsg);
-        // sanitise the user input so we only get the expected data type.
-        sanitise.inputValidator(senderId, itemId, itemName, itemPrice, botMsg, formattedMsg);
-      }
+      if (note !== 'undefined') {
+        console.log('Json File here:', note);
+        if(note.senderId !== 'undefined'){
+          console.log("notes...",note);
+          var botMsg = _.get(note,'item.botMsg');
+          var itemId = _.get(note,'item.itemId');
+          var itemName = _.get(note,'item.itemName');
+          var itemPrice = _.get(note,'item.itemPrice');
+          console.log(botMsg);
+          // sanitise the user input so we only get the expected data type.
+          sanitise.inputValidator(senderId, itemId, itemName, itemPrice, botMsg, formattedMsg);
+        }
+      };
+      
       //Get the first name of user from the fb graph api.
       request({
         url: "https://graph.facebook.com/v2.6/" + senderId,
