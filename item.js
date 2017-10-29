@@ -248,7 +248,7 @@ const checkItemList = (senderId) => {
 
 const deleteList = (senderId) => {
       request({
-      url: "https://lumpus-backend.herokuapp.com/api/shopBot/api/shopBot/shoppingList",
+      url: "https://lumpus-backend.herokuapp.com/api/shopBot/shoppingList",
       method: "DELETE",
       body: { senderId: senderId },
       json:true
